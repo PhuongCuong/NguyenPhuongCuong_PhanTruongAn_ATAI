@@ -44,14 +44,10 @@ const Registration = ({ navigation }) => {
           })
             .then((response) => response.json())
             .then((updatedUser) => {
-              setData([...data, updatedUser]); // Update the state with the new user
+              setData([...data, updatedUser]);
               alert("Đăng ký thành công")
-              navigation.navigate('Đăng ký tài khoản');
+              navigation.navigate('login',{newData:newUser});
             })
-            .catch((error) => {
-              console.error('Error:', error);
-              alert('Error occurred while adding user');
-            });
         } else {
           alert('Please input all required information');
         }

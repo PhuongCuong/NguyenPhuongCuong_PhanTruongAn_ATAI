@@ -5,8 +5,8 @@ import { useRoute } from "@react-navigation/native";
 const Login = ({ navigation }) => {
     var [data,setData] = useState([]);
     const [showpass, setshowpass] = useState(false);
-    const [email, setemail] = useState('');
-    const [password, setpassword] = useState('')
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('')
     var route = useRoute();
     useEffect(()=>{
         fetch(`https://65434e0301b5e279de202812.mockapi.io/User`)
@@ -15,15 +15,13 @@ const Login = ({ navigation }) => {
         data = json;
         setData(json);
       });
-    //   setData(route.params.newData);
     },[])
-    // useEffect(() => {
-    //     if (route.params?.newData) {
-    //       setData([...data, route.params.newData]);
-    //     }
-    //   }, [route.params?.newData]);
+    useEffect(() => {
+        if (route.params?.newData) {
+          setData([...data, route.params.newData]);
+        }
+      }, [route.params?.newData]);
     const handleLogin =()=>{
-        if(data){
             const user = data.find(
                 (user) => user.email === email && user.password === password);
               if(user){
@@ -32,9 +30,8 @@ const Login = ({ navigation }) => {
               }else{
                 alert("Your email is not exist!")
               }
-        }
-        
       }
+      console.log(data);
     return (
         <View style={{ flex: 6, backgroundColor: "#FFF" }}>
             <View style={{ flex: 2, justifyContent: "center", alignItems: "center" }}>
@@ -50,7 +47,7 @@ const Login = ({ navigation }) => {
                             fontWeight: "400", outline: "none",
                             color: "#717171"
                         }} placeholder='Số điện thoại / Email'
-                            onChangeText={(e) => setemail(e)}
+                            onChangeText={(e) => setEmail(e)}
 
                         />
                     </View>
@@ -67,7 +64,7 @@ const Login = ({ navigation }) => {
                             fontWeight: "400", outline: "none",
                             color: "#717171"
                         }} placeholder='Mật khẩu' secureTextEntry={showpass ? false : true}
-                            onChangeText={(e) => setpassword(e)}
+                            onChangeText={(e) => setPassword(e)}
                         />
                         <Pressable style={{ position: "absolute", right: 15, top: "25%" }}
                             onPress={() => setshowpass(!showpass)}
