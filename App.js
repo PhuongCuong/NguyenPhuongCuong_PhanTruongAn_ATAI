@@ -24,9 +24,9 @@ export default function App() {
           title: "Đăng nhập"
 
         }} />
-        <Stack.Screen name='home' component={TabButton} />
+        <Stack.Screen name='home' component={TabButton} options={{ headerShown: false }} />
         <Stack.Screen name='Đăng ký tài khoản' component={Registration} options={{
-           headerTitleAlign:'center',
+          headerTitleAlign: 'center',
           //  headerShown:false
 
         }} />

@@ -1,37 +1,36 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, Pressable, Text, TextInput, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import { useRoute } from "@react-navigation/native";
 const Login = ({ navigation }) => {
-    var [data,setData] = useState([]);
+    var [data, setData] = useState([]);
     const [showpass, setshowpass] = useState(false);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('phanan123@gmail.com');
+    const [password, setPassword] = useState('123')
     var route = useRoute();
-    useEffect(()=>{
+    useEffect(() => {
         fetch(`https://65434e0301b5e279de202812.mockapi.io/User`)
-      .then((response) => response.json())
-      .then((json) => {
-        data = json;
-        setData(json);
-      });
-    },[])
+            .then((response) => response.json())
+            .then((json) => {
+                data = json;
+                setData(json);
+            });
+    }, [])
     useEffect(() => {
         if (route.params?.newData) {
-          setData([...data, route.params.newData]);
+            setData([...data, route.params.newData]);
         }
-      }, [route.params?.newData]);
-    const handleLogin =()=>{
-            const user = data.find(
-                (user) => user.email === email && user.password === password);
-              if(user){
-                console.log(user)
-                    navigation.navigate("home");
-              }else{
-                alert("Your email is not exist!")
-              }
-      }
-      console.log(data);
+    }, [route.params?.newData]);
+    const handleLogin = () => {
+        const user = data.find(
+            (user) => user.email === email && user.password === password);
+        if (user) {
+            console.log(user)
+            navigation.navigate("home");
+        } else {
+            alert("Your email is not exist!")
+        }
+    }
     return (
         <View style={{ flex: 6, backgroundColor: "#FFF" }}>
             <View style={{ flex: 2, justifyContent: "center", alignItems: "center" }}>
@@ -47,6 +46,7 @@ const Login = ({ navigation }) => {
                             fontWeight: "400", outline: "none",
                             color: "#717171"
                         }} placeholder='Số điện thoại / Email'
+                            value={email}
                             onChangeText={(e) => setEmail(e)}
 
                         />
@@ -64,6 +64,7 @@ const Login = ({ navigation }) => {
                             fontWeight: "400", outline: "none",
                             color: "#717171"
                         }} placeholder='Mật khẩu' secureTextEntry={showpass ? false : true}
+                            value={password}
                             onChangeText={(e) => setPassword(e)}
                         />
                         <Pressable style={{ position: "absolute", right: 15, top: "25%" }}
@@ -105,9 +106,9 @@ const Login = ({ navigation }) => {
                 <Text style={{ height: 29, color: "#717171", fontFamily: "Inter", fontSize: 18, fontWeight: "400", letterSpacing: 0.6 }}>
                     Bạn chưa có tài khoản?
                 </Text>
-                <Text 
-                onPress={()=>navigation.navigate('Đăng ký tài khoản')}
-                style={{ height: 29, color: "#FFB900", fontFamily: "Inter", fontSize: 18, fontWeight: "400", letterSpacing: 0.6 }}>
+                <Text
+                    onPress={() => navigation.navigate('Đăng ký tài khoản')}
+                    style={{ height: 29, color: "#FFB900", fontFamily: "Inter", fontSize: 18, fontWeight: "400", letterSpacing: 0.6 }}>
                     Đăng ký
                 </Text>
             </View>
