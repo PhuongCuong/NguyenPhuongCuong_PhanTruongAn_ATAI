@@ -16,22 +16,32 @@ const Login = ({ navigation }) => {
         setData(json);
       });
     },[])
+
     useEffect(() => {
         if (route.params?.newData) {
           setData([...data, route.params.newData]);
         }
       }, [route.params?.newData]);
+
+    useEffect(() => {
+        if (route.params?.dataUpdate) {
+            fetch(`https://65434e0301b5e279de202812.mockapi.io/User`)
+             .then((response) => response.json())
+             .then((json) => {
+               route.params.dataUpdate = json;
+               setData(json);
+      });
+     }}, [route.params]);  
     const handleLogin =()=>{
             const user = data.find(
                 (user) => user.email === email && user.password === password);
               if(user){
                 console.log(user)
-                    navigation.navigate("home");
+                    navigation.navigate("home",{userLogin:user});
               }else{
                 alert("Your email is not exist!")
               }
       }
-      console.log(data);
     return (
         <View style={{ flex: 6, backgroundColor: "#FFF" }}>
             <View style={{ flex: 2, justifyContent: "center", alignItems: "center" }}>
@@ -45,7 +55,8 @@ const Login = ({ navigation }) => {
                             height: 29, fontFamily: "Inter",
                             fontSize: 15, fontStyle: "normal",
                             fontWeight: "400", outline: "none",
-                            color: "#717171"
+                            color: "#717171",
+                            
                         }} placeholder='Số điện thoại / Email'
                             onChangeText={(e) => setEmail(e)}
 

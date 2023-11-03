@@ -5,17 +5,25 @@ import Cart from '../component/Cart';
 import Bell from '../component/Bell';
 import Personal from '../component/Personal';
 import Icon from 'react-native-vector-icons/Entypo';
-
+import { useRoute } from "@react-navigation/native";
+import { useState,useEffect } from 'react';
 const Tab = createBottomTabNavigator();
 
 const TabButton = () => {
+    var route = useRoute();
+    var [user,setUser] = useState(route.params.userLogin); 
+    useEffect(()=>{
+         setUser(route.params.userLogin);
+    },[route.params])
+//   console.log(user);
     return (
         <Tab.Navigator screenOptions={({ route }) => ({
             headerShown: false,
             tabBarIcon: ({ focused }) => {
                 let icon;
                 let rn = route.name;
-                if (rn === "home") {
+                
+                if (rn === "Home") {
                     icon = "home"
                 } else if (rn === "cart") {
                     icon = "shopping-cart"
@@ -29,7 +37,7 @@ const TabButton = () => {
             },
             tabBarLabel: () => null
         })}>
-            <Tab.Screen name='home' component={Home}
+            <Tab.Screen name='Home' component={Home}
 
             />
             <Tab.Screen name='cart' component={Cart}
@@ -39,7 +47,8 @@ const TabButton = () => {
 
             />
             <Tab.Screen name='personal' component={Personal}
-
+                initialParams={{ userPersonal:user}}
+                
             />
         </Tab.Navigator>
     );

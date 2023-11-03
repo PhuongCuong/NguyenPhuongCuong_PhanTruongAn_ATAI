@@ -52,7 +52,7 @@ const Registration = ({ navigation }) => {
           alert('Please input all required information');
         }
       };
-console.log(data);
+
     return (
         <View style={{ flex: 6, backgroundColor: "#FFF" }}>
             <View style={{ flex: 3, alignItems: "center", justifyContent: "space-around" }}>
