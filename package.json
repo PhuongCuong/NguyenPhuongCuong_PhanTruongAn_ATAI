@@ -22,15 +22,12 @@
     "react-dom": "18.2.0",
     "react-native": "0.72.6",
     "react-native-elements": "^3.4.3",
-<<<<<<< HEAD
     "react-native-modal": "^13.0.1",
     "react-native-toast-message": "^2.1.7",
-=======
     "react-native-image-slider-banner": "^1.0.3",
     "react-native-image-slider-box": "^2.0.7",
     "react-native-simple-banner-carousel": "^1.0.0-alpha.2",
     "react-native-snap-carousel": "^3.9.1",
->>>>>>> 93bf75af4b7f1e98ed2a74baf317c1cb1a06f23c
     "react-native-vector-icons": "^10.0.1",
     "react-native-web": "^0.19.9",
     "react-toastify": "^9.1.3"

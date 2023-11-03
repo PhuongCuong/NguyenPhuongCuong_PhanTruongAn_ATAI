@@ -59,7 +59,6 @@ const Personal = ({ navigation }) => {
           setListData(json);
         });
       navigation.navigate("login", { dataUpdate: listData });
-      toggleDeleteAccount();
       alert("Tài khoản đã bị xóa!");
     }
   };
