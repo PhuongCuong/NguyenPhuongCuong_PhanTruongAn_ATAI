@@ -64,25 +64,7 @@ const Personal = ({ navigation }) => {
   };
   return (
     <View style={{ flex: 1, backgroundColor: "#FFF" }}>
-      <View
-        style={{
-          flex: 2,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "#ffb900",
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 32,
-            fontWeight: 700,
-            alignSelf: "center",
-            color: "white",
-          }}
-        >
-          Cá nhân
-        </Text>
-      </View>
+
       <View
         style={{
           flex: 3,
