@@ -1,30 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, Pressable, Text, TextInput, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
-
-const userExp = {
-    email: "cuong@gmail.com",
-    password: "123456"
-}
-
+import { useRoute } from "@react-navigation/native";
 const Login = ({ navigation }) => {
-
+    var [data, setData] = useState([]);
     const [showpass, setshowpass] = useState(false);
-    const [email, setemail] = useState("cuong@gmail.com");
-    const [password, setpassword] = useState("123456")
-
+    const [email, setEmail] = useState('phanan123@gmail.com');
+    const [password, setPassword] = useState('123')
+    var route = useRoute();
+    useEffect(() => {
+        fetch(`https://65434e0301b5e279de202812.mockapi.io/User`)
+            .then((response) => response.json())
+            .then((json) => {
+                data = json;
+                setData(json);
+            });
+    }, [])
+    useEffect(() => {
+        if (route.params?.newData) {
+            setData([...data, route.params.newData]);
+        }
+    }, [route.params?.newData]);
     const handleLogin = () => {
-        if (!email || !password) {
-            alert("login error")
+        const user = data.find(
+            (user) => user.email === email && user.password === password);
+        if (user) {
+            console.log(user)
+            navigation.navigate("home");
         } else {
-            if (userExp.email === email && userExp.password === password) {
-                navigation.navigate("home")
-            } else {
-                alert("info email or password not exactly")
-            }
+            alert("Your email is not exist!")
         }
     }
-
     return (
         <View style={{ flex: 6, backgroundColor: "#FFF" }}>
             <View style={{ flex: 2, justifyContent: "center", alignItems: "center" }}>
@@ -39,8 +45,9 @@ const Login = ({ navigation }) => {
                             fontSize: 15, fontStyle: "normal",
                             fontWeight: "400", outline: "none",
                             color: "#717171"
-                        }} placeholder='Số điện thoại / Email' value={email}
-                            onChange={(e) => setemail(e.target.value)}
+                        }} placeholder='Số điện thoại / Email'
+                            value={email}
+                            onChangeText={(e) => setEmail(e)}
 
                         />
                     </View>
@@ -56,8 +63,9 @@ const Login = ({ navigation }) => {
                             fontSize: 15, fontStyle: "normal",
                             fontWeight: "400", outline: "none",
                             color: "#717171"
-                        }} placeholder='Mật khẩu' secureTextEntry={showpass ? false : true} value={password}
-                            onChange={(e) => setpassword(e.target.value)}
+                        }} placeholder='Mật khẩu' secureTextEntry={showpass ? false : true}
+                            value={password}
+                            onChangeText={(e) => setPassword(e)}
                         />
                         <Pressable style={{ position: "absolute", right: 15, top: "25%" }}
                             onPress={() => setshowpass(!showpass)}
@@ -98,7 +106,9 @@ const Login = ({ navigation }) => {
                 <Text style={{ height: 29, color: "#717171", fontFamily: "Inter", fontSize: 18, fontWeight: "400", letterSpacing: 0.6 }}>
                     Bạn chưa có tài khoản?
                 </Text>
-                <Text style={{ height: 29, color: "#FFB900", fontFamily: "Inter", fontSize: 18, fontWeight: "400", letterSpacing: 0.6 }}>
+                <Text
+                    onPress={() => navigation.navigate('Đăng ký tài khoản')}
+                    style={{ height: 29, color: "#FFB900", fontFamily: "Inter", fontSize: 18, fontWeight: "400", letterSpacing: 0.6 }}>
                     Đăng ký
                 </Text>
             </View>
