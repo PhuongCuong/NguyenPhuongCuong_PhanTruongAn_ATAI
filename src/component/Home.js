@@ -6,35 +6,35 @@ import Itemproduct from "./Itemproduct";
 import Listsell from "./Listsell";
 
 const listImg = [
-  { img: require("../../assets/img/banner/Rectangle 5.png") },
-  { img: require("../../assets/img/banner/banner2.jpg") },
+  { img: require("../../assets/img/banner/banner1-1.jpg") },
+  { img: require("../../assets/img/banner/banner1-2.jpg") },
 ];
 
 const listItem = [
   {
     id: 1,
     name: "CƠM VĂN PHÒNG",
-    img: require("../../assets/img/product/Rectangle 13.png"),
+    img: require("../../assets/img/product/banhgoicuon.jpg"),
   },
   {
     id: 2,
     name: "BÚN THỊT NƯỚNG",
-    img: require("../../assets/img/product/Rectangle 14.png"),
+    img: require("../../assets/img/product/bunthapcam.jpg"),
   },
   {
     id: 3,
     name: "BÁNH HỎI",
-    img: require("../../assets/img/product/Rectangle 15.png"),
+    img: require("../../assets/img/product/banhhoi.jpg"),
   },
   {
     id: 4,
     name: "MÓN THÊM",
-    img: require("../../assets/img/product/Rectangle 16.png"),
+    img: require("../../assets/img/product/com-ba-roi-nuong.jpg"),
   },
   {
     id: 5,
     name: "NƯỚC GIẢI KHÁT",
-    img: require("../../assets/img/product/Rectangle 17.png"),
+    img: require("../../assets/img/product/nuocgiaikhat.jpg"),
   },
 ];
 
@@ -42,25 +42,25 @@ const listsell = [
   {
     id: 1,
     name: "Bánh gỏi thập cẩm",
-    img: require("../../assets/img/product/Rectangle 13.png"),
+    img: require("../../assets/img/product/banhhoi.jpg"),
     price: "35.000đ",
   },
   {
     id: 2,
     name: "Bún thập cẩm",
-    img: require("../../assets/img/product/Rectangle 14.png"),
+    img: require("../../assets/img/product/bunthapcam.jpg"),
     price: "35.000đ",
   },
   {
     id: 3,
     name: "Cơm đùi gà nướng",
-    img: require("../../assets/img/product/Rectangle 15.png"),
+    img: require("../../assets/img/product/comduiganuong.jpg"),
     price: "30.000đ",
   },
   {
     id: 4,
     name: "Cơm ba rọi nướng",
-    img: require("../../assets/img/product/Rectangle 16.png"),
+    img: require("../../assets/img/product/com-ba-roi-nuong.jpg"),
     price: "40.000đ",
   },
 ];

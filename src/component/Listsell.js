@@ -17,7 +17,7 @@ const Listsell = (props) => {
             <View style={{ height: 20, backgroundColor: "#FFF" }}>
             </View>
             <View style={{ height: 130, borderBottomWidth: 1, borderBottomColor: "#FFB900" }}>
-                <Image style={{ height: 100 }} source={item.img} />
+                <Image style={{ flex: 1, height: undefined, width: undefined, resizeMode: "contain" }} source={item.img} />
             </View>
             <View style={{ justifyContent: "space-between" }}>
                 <Text style={{

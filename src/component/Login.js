@@ -5,8 +5,8 @@ import { useRoute } from "@react-navigation/native";
 const Login = ({ navigation }) => {
   var [data, setData] = useState([]);
   const [showpass, setshowpass] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("cuong@gmail.com");
+  const [password, setPassword] = useState("123456");
   var route = useRoute();
   useEffect(() => {
     fetch(`https://65434e0301b5e279de202812.mockapi.io/User`)
@@ -84,6 +84,7 @@ const Login = ({ navigation }) => {
                 color: "#717171",
               }}
               placeholder="Số điện thoại / Email"
+              value={email}
               onChangeText={(e) => setEmail(e)}
             />
           </View>
@@ -114,6 +115,7 @@ const Login = ({ navigation }) => {
               }}
               placeholder="Mật khẩu"
               secureTextEntry={showpass ? false : true}
+              value={password}
               onChangeText={(e) => setPassword(e)}
             />
             <Pressable
