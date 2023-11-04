@@ -6,6 +6,7 @@ import Personal from "./src/component/Personal";
 import Registration from "./src/component/Registration";
 import InformationUser from "./src/component/InformationUser";
 import UpdatePassword from "./src/component/UpdatePassword";
+import DiscountDetail from "./src/component/DiscountDetail";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -109,6 +110,24 @@ export default function App() {
               fontWeight: "700",
             },
             title: "Đổi mật khẩu",
+          }}
+        />
+        <Stack.Screen
+          name="Thông tin giảm giá"
+          component={DiscountDetail}
+          options={{
+            headerStyle: {
+              backgroundColor: "#FFB900",
+            },
+            headerTitleAlign: "center",
+            headerTintColor: "#000",
+            headerTitleStyle: {
+              fontFamily: "Inter",
+              fontSize: 25,
+              fontStyle: "normal",
+              fontWeight: "700",
+            },
+            title: "Thông tin giảm giá",
           }}
         />
       </Stack.Navigator>
