@@ -38,10 +38,9 @@ const Login = ({ navigation }) => {
       (user) => user.email === email && user.password === password
     );
     if (user) {
-      console.log(user);
       navigation.navigate("home", { userLogin: user });
     } else {
-      alert("Your email is not exist!");
+      alert("Email không tồn tại! ");
     }
   };
   return (

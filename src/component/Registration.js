@@ -34,6 +34,7 @@ const Registration = ({ navigation }) => {
         fullname: fullName,
         cart: [],
         phone: phone,
+        discount: [],
         id: data.length + 1,
       };
       if (isChecked !== false) {
