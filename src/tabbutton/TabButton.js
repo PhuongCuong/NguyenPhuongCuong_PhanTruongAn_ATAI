@@ -8,7 +8,7 @@ import Icon from "react-native-vector-icons/Entypo";
 import IconANT from "react-native-vector-icons/AntDesign";
 import { useRoute } from "@react-navigation/native";
 import { useState, useEffect } from "react";
-import { Text, TextInput, View } from "react-native";
+import { Text, TextInput, View, TouchableOpacity, Image } from "react-native";
 
 const Search = () => {
   return (
@@ -41,6 +41,19 @@ const Search = () => {
         }}
         placeholder="Bạn cần tìm kiếm gì hôm nay ?"
       />
+      <TouchableOpacity
+        style={{
+          width: 35,
+          height: 35,
+          left: 82,
+          alignItems: "center",
+        }}
+      >
+        <Image
+          source={require("../../assets/img/icon/cart.png")}
+          style={{ width: 34, height: 34 }}
+        ></Image>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -87,6 +100,29 @@ const ThongBaoTitle = () => {
         }}
       >
         Thông báo
+      </Text>
+    </View>
+  );
+};
+const CartTitle = () => {
+  return (
+    <View
+      style={{
+        flex: 2,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#ffb900",
+      }}
+    >
+      <Text
+        style={{
+          fontSize: 32,
+          fontWeight: 700,
+          alignSelf: "center",
+          color: "white",
+        }}
+      >
+        Giỏ hàng
       </Text>
     </View>
   );
@@ -142,7 +178,20 @@ const TabButton = () => {
           },
         }}
       />
-      <Tab.Screen name="cart" component={Cart} />
+      <Tab.Screen
+        name="cart"
+        component={Cart}
+        options={{
+          headerTitle: () => CartTitle(),
+          headerStyle: {
+            display: "flex",
+            backgroundColor: "#FFB900",
+            justifyContent: "center",
+            alignItems: "center",
+          },
+          headerTitleAlign: "center",
+        }}
+      />
       <Tab.Screen
         name="bell"
         component={Bell}

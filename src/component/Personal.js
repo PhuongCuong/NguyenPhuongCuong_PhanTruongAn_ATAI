@@ -104,14 +104,24 @@ const Personal = ({ navigation }) => {
           onPress={() =>
             navigation.navigate("Thông tin tài khoản", { user: data })
           }
+          // style={styles.opaci}
         >
+          {/* <Image
+            source={require("../../assets/img/icon/info.png")}
+            style={{ width: 34, height: 34, top: "40%", left: "90%" }}
+          ></Image> */}
           <Text style={styles.textOpaci}>Thông tin tài khoản</Text>
           <View style={styles.borderLine} />
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => navigation.navigate("Đổi mật khẩu", { user: data })}
+          // style={styles.opaci}
         >
+          {/* <Image
+            source={require("../../assets/img/icon/locked.png")}
+            style={{ width: 34, height: 34, top: "40%", left: "90%" }}
+          ></Image> */}
           <Text style={styles.textOpaci}>Đổi mật khẩu</Text>
           <View style={styles.borderLine} />
         </TouchableOpacity>
@@ -325,12 +335,20 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 600,
   },
+  icon: {
+    width: 34,
+    height: 34,
+  },
   borderLine: {
     marginTop: 15,
     borderBottomWidth: 1, // Độ rộng của border dưới
     borderBottomColor: "black", // Màu sắc của border dưới
     width: "320px", // Chiều rộng của đường dưới, có thể điều chỉnh theo nhu cầu
     alignSelf: "center", // Canh chỉnh theo trung tâm
+  },
+  opaci: {
+    width: 380,
+    height: 70,
   },
 });
 
