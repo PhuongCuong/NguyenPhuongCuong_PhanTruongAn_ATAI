@@ -8,7 +8,8 @@ import Icon from "react-native-vector-icons/Entypo";
 import IconANT from "react-native-vector-icons/AntDesign";
 import { useRoute } from "@react-navigation/native";
 import { useState, useEffect } from "react";
-import { Text, TextInput, View, TouchableOpacity, Image } from "react-native";
+import { Text, TextInput, View } from "react-native";
+import _ from "lodash";
 
 const Search = () => {
   return (
@@ -130,13 +131,23 @@ const CartTitle = () => {
 
 const Tab = createBottomTabNavigator();
 
-const TabButton = () => {
-  var route = useRoute();
-  var [user, setUser] = useState(route.params.userLogin);
+const TabButton = (props) => {
+  const { navigation, route } = props;
+
+  const [userinfo, setUser] = useState({});
+
   useEffect(() => {
-    setUser(route.params.userLogin);
+    if (
+      route.params &&
+      route.params.userLogin &&
+      !_.isEmpty(route.params.userLogin)
+    ) {
+      setUser(route.params.userLogin);
+    }
   }, [route.params]);
-  //   console.log(user);
+
+  console.log("check data user", userinfo);
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -195,7 +206,9 @@ const TabButton = () => {
       <Tab.Screen
         name="bell"
         component={Bell}
-        initialParams={{ userPersonal: user }}
+        initialParams={{
+          userPersonal: userinfo && !_.isEmpty(userinfo) ? userinfo : {},
+        }}
         options={{
           headerTitle: () => ThongBaoTitle(),
           headerStyle: {
@@ -210,7 +223,9 @@ const TabButton = () => {
       <Tab.Screen
         name="personal"
         component={Personal}
-        initialParams={{ userPersonal: user }}
+        initialParams={{
+          userPersonal: userinfo && !_.isEmpty(userinfo) ? "123" : userinfo,
+        }}
         options={{
           headerTitle: () => Personnaltitle(),
           headerStyle: {

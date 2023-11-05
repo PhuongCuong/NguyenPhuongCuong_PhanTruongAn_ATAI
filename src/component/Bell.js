@@ -14,38 +14,41 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
 import Modal from "react-native-modal";
+import { useSelector } from "react-redux";
+import _ from "lodash";
 const Bell = ({ navigation }) => {
-  var route = useRoute();
-  const [data, setData] = useState(route.params.userPersonal.discount);
-  useEffect(() => {
-    setData(route.params.userPersonal.discount);
-  }, [route.params.userPersonal]);
+
+  const userReducer = useSelector((state) => state.uploaduserinfo)
+  const { user } = userReducer;
+
+
   var image = require("../../assets/img/icon/email.png");
   const handlePress = (item) => {
     navigation.navigate("Thông tin giảm giá", { item });
   };
   return (
     <React.Fragment>
-      {data.map((item, index) => (
-        <TouchableOpacity
-          style={styles.discountObject}
-          key={index}
-          onPress={() => handlePress(item)}
-        >
-          <View style={styles.column}>
-            <Image style={styles.image} source={image} />
-          </View>
-          <View style={styles.column}>
-            <Text style={styles.name}>{item.name}</Text>
-            <Text style={styles.discountPercentage}>{`Discount: ${
-              item.discountPercent * 100
-            }%`}</Text>
-          </View>
-          <View style={styles.column}>
-            <Text style={styles.details}>{item.description}</Text>
-          </View>
-        </TouchableOpacity>
-      ))}
+      {user && !_.isEmpty(user) &&
+        user.discount && !_.isEmpty(user.discount) &&
+        user.discount.map((item, index) => (
+          <TouchableOpacity
+            style={styles.discountObject}
+            key={index}
+            onPress={() => handlePress(item)}
+          >
+            <View style={styles.column}>
+              <Image style={styles.image} source={image} />
+            </View>
+            <View style={styles.column}>
+              <Text style={styles.name}>{item.name}</Text>
+              <Text style={styles.discountPercentage}>{`Discount: ${item.discountPercent * 100
+                }%`}</Text>
+            </View>
+            <View style={styles.column}>
+              <Text style={styles.details}>{item.description}</Text>
+            </View>
+          </TouchableOpacity>
+        ))}
     </React.Fragment>
   );
 };
