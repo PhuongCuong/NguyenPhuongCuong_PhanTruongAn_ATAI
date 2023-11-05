@@ -6,6 +6,7 @@ import Personal from "./src/component/Personal";
 import Registration from "./src/component/Registration";
 import InformationUser from "./src/component/InformationUser";
 import UpdatePassword from "./src/component/UpdatePassword";
+import Productportfolio from "./src/component/Productportfolio";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -91,6 +92,7 @@ export default function App() {
             title: "Đổi mật khẩu",
           }}
         />
+        <Stack.Screen name="productportfolio" component={Productportfolio} />
       </Stack.Navigator>
     </NavigationContainer>
     // <UpdatePassword/>

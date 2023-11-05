@@ -1,6 +1,6 @@
 import React from "react";
 import { useRoute } from "@react-navigation/native";
-import { Image, ScrollView, Text, View } from "react-native";
+import { Dimensions, Image, ScrollView, Text, View } from "react-native";
 import { SimpleCarousel, Banner } from "react-native-simple-banner-carousel";
 import Itemproduct from "./Itemproduct";
 import Listsell from "./Listsell";
@@ -65,7 +65,9 @@ const listsell = [
   },
 ];
 
-const Home = () => {
+
+
+const Home = ({ navigation }) => {
   return (
     <ScrollView>
       <View style={{ flex: 1, backgroundColor: "#FFF" }}>
@@ -153,6 +155,7 @@ const Home = () => {
                 fontStyle: "normal",
                 color: "#FFB900",
               }}
+              onPress={() => navigation.navigate("productportfolio")}
             >
               Xem thêm
             </Text>
