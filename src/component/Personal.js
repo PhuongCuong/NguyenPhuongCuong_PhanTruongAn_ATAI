@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   Alert,
   Button,
+  Linking,
 } from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
 import Modal from "react-native-modal";
@@ -94,56 +95,76 @@ const Personal = ({ navigation }) => {
       </View>
       <View
         style={{
-          flex: 8,
+          flex: 9,
           alignItems: "center",
-          justifyContent: "space-around",
-          marginTop: 15,
+          // justifyContent: "space-around",
+          flexDirection: "column",
+          justifyContent: "center",
+          marginTop: 50,
         }}
       >
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("Thông tin tài khoản", { user: data })
           }
-          // style={styles.opaci}
+          style={styles.opaci}
         >
-          {/* <Image
-            source={require("../../assets/img/icon/info.png")}
-            style={{ width: 34, height: 34, top: "40%", left: "90%" }}
-          ></Image> */}
           <Text style={styles.textOpaci}>Thông tin tài khoản</Text>
-          <View style={styles.borderLine} />
+          <Image
+            source={require("../../assets/img/icon/info.png")}
+            style={styles.icon}
+          ></Image>
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => navigation.navigate("Đổi mật khẩu", { user: data })}
-          // style={styles.opaci}
+          style={styles.opaci}
         >
-          {/* <Image
-            source={require("../../assets/img/icon/locked.png")}
-            style={{ width: 34, height: 34, top: "40%", left: "90%" }}
-          ></Image> */}
           <Text style={styles.textOpaci}>Đổi mật khẩu</Text>
-          <View style={styles.borderLine} />
+          <Image
+            source={require("../../assets/img/icon/locked.png")}
+            style={styles.icon}
+          ></Image>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleButtonPress("Button 3")}>
+        <TouchableOpacity
+          onPress={() => {
+            Linking.openURL("https://atai.dev24h.net/gioi-thieu.html");
+          }}
+          style={styles.opaci}
+        >
           <Text style={styles.textOpaci}>Giới thiệu về ATAI</Text>
-          <View style={styles.borderLine} />
+          <Image
+            source={require("../../assets/img/icon/aboutus.png")}
+            style={{ width: 38, height: 38, alignSelf: "center" }}
+          ></Image>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleButtonPress("Button 4")}>
+        <TouchableOpacity
+          onPress={() => handleButtonPress("Button 4")}
+          style={styles.opaci}
+        >
           <Text style={styles.textOpaci}>Điều khoản</Text>
-          <View style={styles.borderLine} />
+          <Image
+            source={require("../../assets/img/icon/term.png")}
+            style={styles.icon}
+          ></Image>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={toggleModal}>
+        <TouchableOpacity onPress={toggleModal} style={styles.opaci}>
           <Text style={styles.textOpaci}>Thoát</Text>
-          <View style={styles.borderLine} />
+          <Image
+            source={require("../../assets/img/icon/logout.png")}
+            style={styles.icon}
+          ></Image>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={toggleDeleteAccount}>
+        <TouchableOpacity onPress={toggleDeleteAccount} style={styles.opaci}>
           <Text style={styles.textOpaci}>Xóa tài khoản</Text>
-          <View style={styles.borderLine} />
+          <Image
+            source={require("../../assets/img/icon/userdelete.png")}
+            style={styles.icon}
+          ></Image>
         </TouchableOpacity>
         <Modal isVisible={isModalVisible}>
           <View
@@ -334,21 +355,28 @@ const styles = StyleSheet.create({
   textOpaci: {
     fontSize: 18,
     fontWeight: 600,
+    alignSelf: "center",
   },
   icon: {
-    width: 34,
-    height: 34,
+    width: 36,
+    height: 36,
+    alignSelf: "center",
   },
   borderLine: {
     marginTop: 15,
-    borderBottomWidth: 1, // Độ rộng của border dưới
-    borderBottomColor: "black", // Màu sắc của border dưới
-    width: "320px", // Chiều rộng của đường dưới, có thể điều chỉnh theo nhu cầu
-    alignSelf: "center", // Canh chỉnh theo trung tâm
+    borderBottomWidth: 1,
+    borderBottomColor: "black",
+    width: "320px",
+    alignSelf: "center",
   },
   opaci: {
-    width: 380,
-    height: 70,
+    margin: 5,
+    width: 320,
+    height: 50,
+    borderBottomWidth: 1,
+    borderBottomColor: "black",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
 
