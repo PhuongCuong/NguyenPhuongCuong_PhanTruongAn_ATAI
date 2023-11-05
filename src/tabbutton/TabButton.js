@@ -146,6 +146,7 @@ const TabButton = () => {
       <Tab.Screen
         name="bell"
         component={Bell}
+        initialParams={{ userPersonal: user }}
         options={{
           headerTitle: () => ThongBaoTitle(),
           headerStyle: {

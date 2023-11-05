@@ -41,7 +41,7 @@ const DiscountDetail = ({ navigation, item }) => {
             marginLeft: 10,
           }}
         >
-          Giảm {data.discountPercentage} - Mã {data.name}
+          {`Giảm giá: ${data.discountPercent * 100}%`} - Mã {data.name}
           <br></br>
         </Text>
         <Text

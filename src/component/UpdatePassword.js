@@ -60,7 +60,7 @@ export default function UpdatePassword({ navigation }) {
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Image
           style={{ height: 120, width: 120 }}
-          source={require("../../assets/img/login/InfoUser.jpg")}
+          source={require("../../assets/img/icon/key.png")}
         />
       </View>
       <View

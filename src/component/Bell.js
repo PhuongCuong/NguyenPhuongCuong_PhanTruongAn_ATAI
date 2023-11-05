@@ -15,61 +15,34 @@ import {
 import Icon from "react-native-vector-icons/Entypo";
 import Modal from "react-native-modal";
 const Bell = ({ navigation }) => {
-  const discountCodes = [
-    {
-      image: require("../../assets/img/icon/email.png"),
-      name: "ATAI10",
-      discountPercentage: "10%",
-      details: "Details for Discount",
-    },
-    {
-      image: require("../../assets/img/icon/email.png"),
-      name: "ATAI20",
-      discountPercentage: "20%",
-      details: "Details for Discount",
-    },
-    {
-      image: require("../../assets/img/icon/email.png"),
-      name: "ATAI15",
-      discountPercentage: "15%",
-      details: "Details for Discount",
-    },
-    {
-      image: require("../../assets/img/icon/email.png"),
-      name: "ATAI25",
-      discountPercentage: "25%",
-      details: "Details for Discount",
-    },
-    {
-      image: require("../../assets/img/icon/email.png"),
-      name: "ATAI30",
-      discountPercentage: "30%",
-      details: "Details for Discount",
-    },
-  ];
+  var route = useRoute();
+  const [data, setData] = useState(route.params.userPersonal.discount);
+  useEffect(() => {
+    setData(route.params.userPersonal.discount);
+  }, [route.params.userPersonal]);
+  var image = require("../../assets/img/icon/email.png");
   const handlePress = (item) => {
     navigation.navigate("Thông tin giảm giá", { item });
   };
-
   return (
     <React.Fragment>
-      {discountCodes.map((item, index) => (
+      {data.map((item, index) => (
         <TouchableOpacity
           style={styles.discountObject}
           key={index}
           onPress={() => handlePress(item)}
         >
           <View style={styles.column}>
-            <Image style={styles.image} source={item.image} />
+            <Image style={styles.image} source={image} />
           </View>
           <View style={styles.column}>
             <Text style={styles.name}>{item.name}</Text>
-            <Text
-              style={styles.discountPercentage}
-            >{`Discount: ${item.discountPercentage}`}</Text>
+            <Text style={styles.discountPercentage}>{`Discount: ${
+              item.discountPercent * 100
+            }%`}</Text>
           </View>
           <View style={styles.column}>
-            <Text style={styles.details}>{item.details}</Text>
+            <Text style={styles.details}>{item.description}</Text>
           </View>
         </TouchableOpacity>
       ))}
