@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRoute } from "@react-navigation/native";
 import { Dimensions, Image, ScrollView, Text, View } from "react-native";
 import { SimpleCarousel, Banner } from "react-native-simple-banner-carousel";
 import Itemproduct from "./Itemproduct";
 import Listsell from "./Listsell";
+import _ from "lodash";
+import { useSelector } from "react-redux";
 
 const listImg = [
   { img: require("../../assets/img/banner/banner1-1.jpg") },
@@ -65,9 +67,23 @@ const listsell = [
   },
 ];
 
+const Home = (props) => {
+  const { navigation, route } = props;
+
+  const [infouser, setinfouser] = useState({});
+
+  const userReducer = useSelector((state) => state.uploaduserinfo)
 
 
-const Home = ({ navigation }) => {
+  useEffect(() => {
+    if (route.params && route.params.userLogin && !_.isEmpty(route.params.userLogin)) {
+      setinfouser(route.params.userLogin)
+    }
+  }, [route.params])
+
+
+
+
   return (
     <ScrollView>
       <View style={{ flex: 1, backgroundColor: "#FFF" }}>

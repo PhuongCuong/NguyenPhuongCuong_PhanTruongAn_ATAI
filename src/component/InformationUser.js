@@ -7,7 +7,6 @@ import {
   View,
   StyleSheet,
 } from "react-native";
-import Icon from "react-native-vector-icons/Entypo";
 import { useRoute } from "@react-navigation/native";
 export default function InformationUser({ navigation }) {
   var route = useRoute();
@@ -38,7 +37,7 @@ export default function InformationUser({ navigation }) {
       .then((response) => response.json())
       .then((json) => {
         setData(updatedUser);
-        navigation.navigate("personal", { userPersonal: updatedUser });
+        // navigation.navigate("personal", { userPersonal: updatedUser });
         alert("Cập nhật thành công");
       });
   };

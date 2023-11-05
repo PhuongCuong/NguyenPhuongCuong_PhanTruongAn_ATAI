@@ -2,11 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Image, Pressable, Text, TextInput, View } from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
 import { useRoute } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { uploaduser } from '../redux/userSlice'
+
+
 const Login = ({ navigation }) => {
+
+  const userReducer = useSelector((state) => state.uploaduserinfo)
+  const dispatch = useDispatch()
+
   var [data, setData] = useState([]);
   const [showpass, setshowpass] = useState(false);
-  const [email, setEmail] = useState("cuong@gmail.com");
-  const [password, setPassword] = useState("123456");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   var route = useRoute();
   useEffect(() => {
     fetch(`https://65434e0301b5e279de202812.mockapi.io/User`)
@@ -33,12 +41,14 @@ const Login = ({ navigation }) => {
         });
     }
   }, [route.params]);
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const user = data.find(
       (user) => user.email === email && user.password === password
     );
     if (user) {
-      navigation.navigate("home", { userLogin: user });
+      await dispatch(uploaduser({ user }))
+      await navigation.navigate("home", { userLogin: user });
+      await navigation.navigate("Home", { userLogin: user });
     } else {
       alert("Email không tồn tại! ");
     }

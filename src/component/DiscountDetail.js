@@ -12,8 +12,7 @@ import {
   Alert,
   Button,
 } from "react-native";
-import Icon from "react-native-vector-icons/Entypo";
-import Modal from "react-native-modal";
+
 const DiscountDetail = ({ navigation, item }) => {
   var route = useRoute();
   var data = route.params.item;
