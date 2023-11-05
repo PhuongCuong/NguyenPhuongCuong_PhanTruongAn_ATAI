@@ -8,7 +8,7 @@ import Icon from "react-native-vector-icons/Entypo";
 import IconANT from "react-native-vector-icons/AntDesign";
 import { useRoute } from "@react-navigation/native";
 import { useState, useEffect } from "react";
-import { Text, TextInput, View } from "react-native";
+import { Text, TextInput, View, TouchableOpacity, Image } from "react-native";
 import _ from "lodash";
 
 const Search = () => {
