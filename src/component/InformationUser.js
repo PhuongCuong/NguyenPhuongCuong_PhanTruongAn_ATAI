@@ -7,22 +7,33 @@ import {
   View,
   StyleSheet,
 } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import _ from "lodash";
+import { uploaduser } from "../redux/userSlice";
+
 export default function InformationUser({ navigation }) {
-  var route = useRoute();
-  var [data, setData] = useState(route.params.user);
+  const userReducer = useSelector((state) => state.uploaduserinfo);
+  const { user } = userReducer;
+  const dispatch = useDispatch();
+
+  const [data, setdata] = useState(user);
+
   var [fullName, setFullName] = useState(data.fullname);
   var [phone, setPhone] = useState(data.phone);
   var [email, setEmail] = useState(data.email);
+
+
   const updateUser = () => {
     const updatedUser = {
       email: email,
-      password: data.password,
+      password: user && !_.isEmpty(user) ? user.password : "",
       fullname: fullName,
-      cart: [],
+      cart: user && !_.isEmpty(user) ? user.cart : [],
       phone: phone,
-      id: data.id,
+      id: user && !_.isEmpty(user) ? user.id : "",
+      discount: user && !_.isEmpty(user) ? user.discount : []
     };
+
 
     fetch(
       `https://65434e0301b5e279de202812.mockapi.io/User/${updatedUser.id}`,
@@ -35,12 +46,24 @@ export default function InformationUser({ navigation }) {
       }
     )
       .then((response) => response.json())
+<<<<<<< HEAD
       .then((json) => {
         setData(updatedUser);
         navigation.navigate("home", { updatedUser });
+=======
+      .then(async (json) => {
+        await setdata(updatedUser)
+        await dispatch(uploaduser({ user: updatedUser }))
+>>>>>>> e6172e978596cda6b049d4a41f2241b330a6f566
         alert("Cập nhật thành công");
+        navigation.navigate("personal", { userPersonal: user });
       });
   };
+
+
+
+  // useEffect(() => {
+  // }, [data])
 
   return (
     <View
@@ -85,7 +108,7 @@ export default function InformationUser({ navigation }) {
             borderBottomWidth: "1px",
             fontSize: 18,
             fontWeight: 600,
-            outline: "none",
+            outlineStyle: "none",
           }}
         ></TextInput>
         <Text
@@ -108,7 +131,7 @@ export default function InformationUser({ navigation }) {
             borderBottomWidth: "1px",
             fontSize: 18,
             fontWeight: 600,
-            outline: "none",
+            outlineStyle: "none",
           }}
         ></TextInput>
         <Text
@@ -131,7 +154,7 @@ export default function InformationUser({ navigation }) {
             borderBottomWidth: "1px",
             fontSize: 18,
             fontWeight: 600,
-            outline: "none",
+            outlineStyle: "none",
           }}
         ></TextInput>
       </View>
@@ -170,6 +193,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: "1px",
     fontSize: 18,
     fontWeight: 600,
-    outline: "none",
+    outlineStyle: "none",
   },
 });

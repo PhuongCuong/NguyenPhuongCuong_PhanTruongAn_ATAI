@@ -305,7 +305,7 @@ const Personal = ({ navigation, route }) => {
                       marginTop: 10,
                       width: 300,
                       height: 50,
-                      outline: "none",
+                      outlineStyle: "none",
                       borderBottomWidth: 1,
                       alignSelf: "center",
                       fontSize: 20,

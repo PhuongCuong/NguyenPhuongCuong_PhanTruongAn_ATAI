@@ -89,7 +89,7 @@ export default function UpdatePassword({ navigation }) {
               height: 35,
               fontSize: 18,
               fontWeight: 400,
-              outline: "none",
+              outlineStyle: "none",
             }}
             secureTextEntry={showPass ? false : true}
           ></TextInput>
@@ -119,7 +119,7 @@ export default function UpdatePassword({ navigation }) {
               height: 35,
               fontSize: 18,
               fontWeight: 400,
-              outline: "none",
+              outlineStyle: "none",
             }}
             secureTextEntry={showNewPass ? false : true}
           ></TextInput>
@@ -149,7 +149,7 @@ export default function UpdatePassword({ navigation }) {
               height: 35,
               fontSize: 18,
               fontWeight: 400,
-              outline: "none",
+              outlineStyle: "none",
             }}
             secureTextEntry={showConfirmPass ? false : true}
           ></TextInput>

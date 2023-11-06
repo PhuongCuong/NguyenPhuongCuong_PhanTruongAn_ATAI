@@ -9,7 +9,8 @@ import UpdatePassword from "./src/component/UpdatePassword";
 import Productportfolio from "./src/component/Productportfolio";
 import DiscountDetail from "./src/component/DiscountDetail";
 import { store } from "./src/redux/store";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
+import _ from "lodash";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -97,7 +98,25 @@ export default function App() {
               title: "Đổi mật khẩu",
             }}
           />
-          <Stack.Screen name="productportfolio" component={Productportfolio} />
+          <Stack.Screen name="productportfolio" component={Productportfolio}
+            options={{
+              headerTitleAlign: "center",
+              headerStyle: {
+                fontFamily: "Inter",
+                fontSize: 19,
+                fontStyle: "normal",
+                fontWeight: "700",
+                color: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 1
+                },
+                shadowColor: "#ddd",
+                shadowOpacity: 0.8
+              },
+              headerTitle: "Danh mục sản phẩm"
+            }}
+          />
           <Stack.Screen
             name="Thông tin giảm giá"
             component={DiscountDetail}

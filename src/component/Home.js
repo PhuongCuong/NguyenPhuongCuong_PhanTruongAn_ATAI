@@ -72,7 +72,14 @@ const Home = (props) => {
 
   const [infouser, setinfouser] = useState({});
 
+<<<<<<< HEAD
   const userReducer = useSelector((state) => state.uploaduserinfo);
+=======
+  const userReducer = useSelector((state) => state.uploaduserinfo)
+  const productReducer = useSelector((state) => state.listproductsell)
+  const { listproductsell } = productReducer;
+
+>>>>>>> e6172e978596cda6b049d4a41f2241b330a6f566
 
   useEffect(() => {
     if (
@@ -86,7 +93,7 @@ const Home = (props) => {
 
   return (
     <ScrollView>
-      <View style={{ flex: 1, backgroundColor: "#FFF" }}>
+      <View style={{ flex: 1, backgroundColor: "#FFF" }} >
         <View
           style={{ width: "100vh", height: 15, backgroundColor: "#F2F2F2" }}
         ></View>
@@ -131,7 +138,7 @@ const Home = (props) => {
             }}
           >
             {listItem.map((item, index) => {
-              return <Itemproduct key={index} item={item} />;
+              return <Itemproduct key={index} item={item} navigation={navigation} />;
             })}
           </View>
         </View>
@@ -171,7 +178,7 @@ const Home = (props) => {
                 fontStyle: "normal",
                 color: "#FFB900",
               }}
-              onPress={() => navigation.navigate("productportfolio")}
+              onPress={() => navigation.navigate("productportfolio", { listproduct: listproductsell })}
             >
               Xem thêm
             </Text>
