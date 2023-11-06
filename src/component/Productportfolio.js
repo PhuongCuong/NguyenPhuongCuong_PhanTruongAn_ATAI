@@ -3,11 +3,10 @@ import { ScrollView, Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import Listsell from './Listsell';
 
-const Productportfolio = () => {
+const Productportfolio = (props) => {
 
-    const productReducer = useSelector((state) => state.listproductsell)
-    const { listproductsell } = productReducer;
-
+    const { navigation, route } = props;
+    const { listproduct } = route.params;
 
     return (
         <ScrollView>
@@ -26,7 +25,7 @@ const Productportfolio = () => {
 
                 }}>
                     {
-                        listproductsell && listproductsell.map((item, index) => {
+                        listproduct && listproduct.map((item, index) => {
                             return (
                                 <Listsell key={index}
                                     item={item}

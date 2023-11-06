@@ -89,7 +89,7 @@ const Login = ({ navigation }) => {
                 fontSize: 15,
                 fontStyle: "normal",
                 fontWeight: "400",
-                outline: "none",
+                outlineStyle: "none",
                 color: "#717171",
               }}
               placeholder="Số điện thoại / Email"
@@ -119,7 +119,7 @@ const Login = ({ navigation }) => {
                 fontSize: 15,
                 fontStyle: "normal",
                 fontWeight: "400",
-                outline: "none",
+                outlineStyle: "none",
                 color: "#717171",
               }}
               placeholder="Mật khẩu"

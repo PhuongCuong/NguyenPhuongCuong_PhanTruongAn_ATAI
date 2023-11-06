@@ -21,14 +21,14 @@ const Listsell = (props) => {
             </View>
             <View style={{ justifyContent: "space-between" }}>
                 <Text style={{
-                    marginLeft: 10, marginTop: 5, marginBottom: 15,
+                    marginLeft: 10, marginTop: 5, marginBottom: 5,
                     fontFamily: "Inter", fontSize: 17, fontWeight: "700",
                     fontStyle: "normal", color: "#000"
                 }}>
                     {item.name}
                 </Text>
                 <Text style={{
-                    marginLeft: 10, marginTop: 5, marginBottom: 15,
+                    marginLeft: 10, marginBottom: 15,
                     fontFamily: "Inter", fontSize: 17, fontWeight: "700",
                     fontStyle: "normal", color: "#E81725",
                 }}>{item.price}</Text>

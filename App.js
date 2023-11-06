@@ -9,7 +9,8 @@ import UpdatePassword from "./src/component/UpdatePassword";
 import Productportfolio from "./src/component/Productportfolio";
 import DiscountDetail from "./src/component/DiscountDetail";
 import { store } from "./src/redux/store";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
+import _ from "lodash";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -113,7 +114,7 @@ export default function App() {
                 shadowColor: "#ddd",
                 shadowOpacity: 0.8
               },
-              headerTitle: "Sản phẩm bán chạy"
+              headerTitle: "Danh mục sản phẩm"
             }}
           />
           <Stack.Screen

@@ -37,7 +37,7 @@ const Search = () => {
           fontStyle: "italic",
           fontWeight: "400",
           lineHeight: "normal",
-          outline: "none",
+          outlineStyle: "none",
           marginLeft: 10,
         }}
         placeholder="Bạn cần tìm kiếm gì hôm nay ?"
@@ -146,7 +146,8 @@ const TabButton = (props) => {
     }
   }, [route.params]);
 
-  console.log("check data user", userinfo);
+
+
 
   return (
     <Tab.Navigator
