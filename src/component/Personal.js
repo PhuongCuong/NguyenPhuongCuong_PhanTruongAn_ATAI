@@ -19,8 +19,7 @@ import _ from "lodash";
 import { useSelector } from "react-redux";
 const Personal = ({ navigation, route }) => {
   const userReducer = useSelector((state) => state.uploaduserinfo);
-  const { user } = userReducer;
-
+  var { user } = userReducer;
   const [isModalVisible, setModalVisible] = useState(false);
   const [isDeleteVisible, setDeleteVisible] = useState(false);
   var [listData, setListData] = useState([]);
@@ -31,7 +30,10 @@ const Personal = ({ navigation, route }) => {
   const toggleDeleteAccount = () => {
     setDeleteVisible(!isDeleteVisible);
   };
-
+  useEffect(() => {
+    user = route.params.updatedUser;
+  }, [route.params.updatedUser]);
+  console.log(user);
   const handleLogOutAndUpdateData = () => {
     setModalVisible(false);
     navigation.navigate("login", { dataUpdate: listData });

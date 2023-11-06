@@ -72,17 +72,17 @@ const Home = (props) => {
 
   const [infouser, setinfouser] = useState({});
 
-  const userReducer = useSelector((state) => state.uploaduserinfo)
-
+  const userReducer = useSelector((state) => state.uploaduserinfo);
 
   useEffect(() => {
-    if (route.params && route.params.userLogin && !_.isEmpty(route.params.userLogin)) {
-      setinfouser(route.params.userLogin)
+    if (
+      route.params &&
+      route.params.userLogin &&
+      !_.isEmpty(route.params.userLogin)
+    ) {
+      setinfouser(route.params.userLogin);
     }
-  }, [route.params])
-
-
-
+  }, [route.params]);
 
   return (
     <ScrollView>

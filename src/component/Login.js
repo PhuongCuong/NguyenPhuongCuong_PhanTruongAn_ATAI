@@ -3,13 +3,11 @@ import { Image, Pressable, Text, TextInput, View } from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
 import { useRoute } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import { uploaduser } from '../redux/userSlice'
-
+import { uploaduser } from "../redux/userSlice";
 
 const Login = ({ navigation }) => {
-
-  const userReducer = useSelector((state) => state.uploaduserinfo)
-  const dispatch = useDispatch()
+  const userReducer = useSelector((state) => state.uploaduserinfo);
+  const dispatch = useDispatch();
 
   var [data, setData] = useState([]);
   const [showpass, setshowpass] = useState(false);
@@ -46,11 +44,11 @@ const Login = ({ navigation }) => {
       (user) => user.email === email && user.password === password
     );
     if (user) {
-      await dispatch(uploaduser({ user }))
+      await dispatch(uploaduser({ user }));
       await navigation.navigate("home", { userLogin: user });
       await navigation.navigate("Home", { userLogin: user });
     } else {
-      alert("Email không tồn tại! ");
+      alert("Email hoặc password sai! ");
     }
   };
   return (

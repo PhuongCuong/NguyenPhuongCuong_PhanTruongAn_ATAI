@@ -37,7 +37,7 @@ export default function InformationUser({ navigation }) {
       .then((response) => response.json())
       .then((json) => {
         setData(updatedUser);
-        // navigation.navigate("personal", { userPersonal: updatedUser });
+        navigation.navigate("home", { updatedUser });
         alert("Cập nhật thành công");
       });
   };

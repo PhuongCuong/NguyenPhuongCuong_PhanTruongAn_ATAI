@@ -145,7 +145,6 @@ const TabButton = (props) => {
       setUser(route.params.userLogin);
     }
   }, [route.params]);
-
   console.log("check data user", userinfo);
 
   return (
@@ -207,7 +206,8 @@ const TabButton = (props) => {
         name="bell"
         component={Bell}
         initialParams={{
-          userPersonal: userinfo && !_.isEmpty(userinfo) ? userinfo : {},
+          // userPersonal: userinfo && !_.isEmpty(userinfo) ? userinfo : {},
+          userPersonal: userinfo,
         }}
         options={{
           headerTitle: () => ThongBaoTitle(),
@@ -224,7 +224,8 @@ const TabButton = (props) => {
         name="personal"
         component={Personal}
         initialParams={{
-          userPersonal: userinfo && !_.isEmpty(userinfo) ? "123" : userinfo,
+          // userPersonal: userinfo && !_.isEmpty(userinfo) ? "123" : userinfo,
+          updatedUser: userinfo,
         }}
         options={{
           headerTitle: () => Personnaltitle(),
