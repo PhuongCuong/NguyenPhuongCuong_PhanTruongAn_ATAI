@@ -16,8 +16,10 @@ import {
 import Icon from "react-native-vector-icons/Entypo";
 import Modal from "react-native-modal";
 import _ from "lodash";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { uploaduser } from "../redux/userSlice";
 const Personal = ({ navigation, route }) => {
+  const dispatch = useDispatch();
   const userReducer = useSelector((state) => state.uploaduserinfo);
   var { user } = userReducer;
   const [isModalVisible, setModalVisible] = useState(false);

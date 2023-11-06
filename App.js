@@ -142,10 +142,11 @@ export default function App() {
             options={{
               headerTitleAlign: "center",
               headerTitle: "Chi tiết sản phẩm",
-              headerStyle: {
+              headerStyle: {},
+              headerTitleStyle: {
+                color: "#FFB900",
                 fontFamily: "Inter",
                 fontSize: 18,
-                fontStyle: "normal",
                 fontWeight: "700",
               },
               headerRight: () => {
