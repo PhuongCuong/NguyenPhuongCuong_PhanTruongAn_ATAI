@@ -145,14 +145,6 @@ const TabButton = (props) => {
       setUser(route.params.userLogin);
     }
   }, [route.params]);
-<<<<<<< HEAD
-  console.log("check data user", userinfo);
-=======
-
-
-
->>>>>>> e6172e978596cda6b049d4a41f2241b330a6f566
-
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({

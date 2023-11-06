@@ -22,7 +22,6 @@ export default function InformationUser({ navigation }) {
   var [phone, setPhone] = useState(data.phone);
   var [email, setEmail] = useState(data.email);
 
-
   const updateUser = () => {
     const updatedUser = {
       email: email,
@@ -31,9 +30,8 @@ export default function InformationUser({ navigation }) {
       cart: user && !_.isEmpty(user) ? user.cart : [],
       phone: phone,
       id: user && !_.isEmpty(user) ? user.id : "",
-      discount: user && !_.isEmpty(user) ? user.discount : []
+      discount: user && !_.isEmpty(user) ? user.discount : [],
     };
-
 
     fetch(
       `https://65434e0301b5e279de202812.mockapi.io/User/${updatedUser.id}`,
@@ -46,21 +44,13 @@ export default function InformationUser({ navigation }) {
       }
     )
       .then((response) => response.json())
-<<<<<<< HEAD
-      .then((json) => {
-        setData(updatedUser);
-        navigation.navigate("home", { updatedUser });
-=======
       .then(async (json) => {
-        await setdata(updatedUser)
-        await dispatch(uploaduser({ user: updatedUser }))
->>>>>>> e6172e978596cda6b049d4a41f2241b330a6f566
+        await setdata(updatedUser);
+        await dispatch(uploaduser({ user: updatedUser }));
         alert("Cập nhật thành công");
         navigation.navigate("personal", { userPersonal: user });
       });
   };
-
-
 
   // useEffect(() => {
   // }, [data])

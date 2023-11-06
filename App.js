@@ -14,7 +14,6 @@ import _ from "lodash";
 const Stack = createStackNavigator();
 
 export default function App() {
-
   return (
     <Provider store={store}>
       <NavigationContainer>
@@ -98,23 +97,28 @@ export default function App() {
               title: "Đổi mật khẩu",
             }}
           />
-          <Stack.Screen name="productportfolio" component={Productportfolio}
+          <Stack.Screen
+            name="productportfolio"
+            component={Productportfolio}
             options={{
               headerTitleAlign: "center",
               headerStyle: {
+                backgroundColor: "#FFB900",
+              },
+              headerTitleStyle: {
                 fontFamily: "Inter",
-                fontSize: 19,
+                fontSize: 25,
                 fontStyle: "normal",
                 fontWeight: "700",
                 color: "#000",
-                shadowOffset: {
-                  width: 0,
-                  height: 1
-                },
-                shadowColor: "#ddd",
-                shadowOpacity: 0.8
+                // shadowOffset: {
+                //   width: 0,
+                //   height: 1,
+                // },
+                // shadowColor: "#ddd",
+                // shadowOpacity: 0.8,
               },
-              headerTitle: "Danh mục sản phẩm"
+              headerTitle: "Danh sách món",
             }}
           />
           <Stack.Screen
@@ -138,6 +142,5 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
-
   );
 }
