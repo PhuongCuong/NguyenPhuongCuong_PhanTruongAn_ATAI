@@ -97,7 +97,25 @@ export default function App() {
               title: "Đổi mật khẩu",
             }}
           />
-          <Stack.Screen name="productportfolio" component={Productportfolio} />
+          <Stack.Screen name="productportfolio" component={Productportfolio}
+            options={{
+              headerTitleAlign: "center",
+              headerStyle: {
+                fontFamily: "Inter",
+                fontSize: 19,
+                fontStyle: "normal",
+                fontWeight: "700",
+                color: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 1
+                },
+                shadowColor: "#ddd",
+                shadowOpacity: 0.8
+              },
+              headerTitle: "Sản phẩm bán chạy"
+            }}
+          />
           <Stack.Screen
             name="Thông tin giảm giá"
             component={DiscountDetail}
