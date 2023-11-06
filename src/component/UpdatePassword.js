@@ -59,7 +59,7 @@ export default function UpdatePassword({ navigation }) {
     >
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Image
-          style={{ height: 120, width: 120 }}
+          style={{ height: 120, width: 120, top: "27%" }}
           source={require("../../assets/img/icon/key.png")}
         />
       </View>
@@ -166,7 +166,7 @@ export default function UpdatePassword({ navigation }) {
         <Pressable
           onPress={updatePassword}
           style={{
-            marginTop: -80,
+            marginTop: -70,
             width: 280,
             height: 45,
             backgroundColor: "#FFB900",
@@ -201,9 +201,9 @@ const styles = StyleSheet.create({
   },
   borderLine: {
     marginTop: 15,
-    borderBottomWidth: 1, // Độ rộng của border dưới
-    borderBottomColor: "black", // Màu sắc của border dưới
-    width: "320px", // Chiều rộng của đường dưới, có thể điều chỉnh theo nhu cầu
-    alignSelf: "center", // Canh chỉnh theo trung tâm
+    borderBottomWidth: 1,
+    borderBottomColor: "black",
+    width: "320px",
+    alignSelf: "center",
   },
 });

@@ -34,7 +34,14 @@ const Registration = ({ navigation }) => {
         fullname: fullName,
         cart: [],
         phone: phone,
-        discount: [],
+        discount: [
+          {
+            id: "1",
+            name: "ATAI10",
+            discountPercent: 0.1,
+            description: "Phiếu giảm giá 10%",
+          },
+        ],
         id: data.length + 1,
       };
       if (isChecked !== false) {

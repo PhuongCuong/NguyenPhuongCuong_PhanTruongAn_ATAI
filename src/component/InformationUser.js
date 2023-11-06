@@ -53,7 +53,7 @@ export default function InformationUser({ navigation }) {
     >
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Image
-          style={{ height: 110, width: 110 }}
+          style={{ height: 110, width: 110, top: "27%" }}
           source={require("../../assets/img/icon/user.png")}
         />
       </View>

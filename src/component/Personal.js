@@ -11,14 +11,14 @@ import {
   TouchableOpacity,
   Alert,
   Button,
+  Linking,
 } from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
 import Modal from "react-native-modal";
 import _ from "lodash";
 import { useSelector } from "react-redux";
 const Personal = ({ navigation, route }) => {
-
-  const userReducer = useSelector((state) => state.uploaduserinfo)
+  const userReducer = useSelector((state) => state.uploaduserinfo);
   const { user } = userReducer;
 
   const [isModalVisible, setModalVisible] = useState(false);
@@ -33,7 +33,7 @@ const Personal = ({ navigation, route }) => {
   };
 
   const handleLogOutAndUpdateData = () => {
-    setModalVisible(false)
+    setModalVisible(false);
     navigation.navigate("login", { dataUpdate: listData });
   };
   const handleDeleteAccount = () => {
@@ -51,7 +51,7 @@ const Personal = ({ navigation, route }) => {
         .then((json) => {
           setListData(json);
         });
-      setDeleteVisible(false)
+      setDeleteVisible(false);
       navigation.navigate("login", { dataUpdate: listData });
       alert("Tài khoản đã bị xóa!");
     }
@@ -59,7 +59,7 @@ const Personal = ({ navigation, route }) => {
 
   return (
     <>
-      <View style={{ flex: 1, backgroundColor: "#FFF" }} >
+      <View style={{ flex: 1, backgroundColor: "#FFF" }}>
         <View
           style={{
             flex: 3,
@@ -90,66 +90,101 @@ const Personal = ({ navigation, route }) => {
         </View>
         <View
           style={{
-            flex: 8,
+            flex: 10,
             alignItems: "center",
-            justifyContent: "space-around",
+            // justifyContent: "space-around",
             marginTop: 15,
+            flexDirection: "column",
           }}
         >
-          {user && !_.isEmpty(user)
-            ?
+          {user && !_.isEmpty(user) ? (
             <>
               <TouchableOpacity
+                style={styles.opaci}
                 onPress={() =>
                   navigation.navigate("Thông tin tài khoản", { user: user })
                 }
               >
                 <Text style={styles.textOpaci}>Thông tin tài khoản</Text>
-                <View style={styles.borderLine} />
+                <Image
+                  style={styles.icon}
+                  source={require("../../assets/img/icon/info.png")}
+                ></Image>
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={() => navigation.navigate("Đổi mật khẩu", { user: user })}
+                style={styles.opaci}
+                onPress={() =>
+                  navigation.navigate("Đổi mật khẩu", { user: user })
+                }
               >
                 <Text style={styles.textOpaci}>Đổi mật khẩu</Text>
-                <View style={styles.borderLine} />
+                <Image
+                  style={styles.icon}
+                  source={require("../../assets/img/icon/locked.png")}
+                ></Image>
               </TouchableOpacity>
             </>
-            :
+          ) : (
             <>
               <TouchableOpacity
+                style={styles.opaci}
                 onPress={() => navigation.navigate("login")}
               >
                 <Text style={styles.textOpaci}>Đăng Nhập</Text>
-                <View style={styles.borderLine} />
+                <Image
+                  style={styles.icon}
+                  source={require("../../assets/img/icon/login.png")}
+                ></Image>
               </TouchableOpacity>
             </>
-          }
+          )}
 
-
-          <TouchableOpacity onPress={() => handleButtonPress("Button 3")}>
+          <TouchableOpacity
+            style={styles.opaci}
+            onPress={() => {
+              Linking.openURL("https://atai.dev24h.net/gioi-thieu.html");
+            }}
+          >
             <Text style={styles.textOpaci}>Giới thiệu về ATAI</Text>
-            <View style={styles.borderLine} />
+            <Image
+              style={styles.icon}
+              source={require("../../assets/img/icon/aboutus.png")}
+            ></Image>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => handleButtonPress("Button 4")}>
+          <TouchableOpacity
+            style={styles.opaci}
+            onPress={() => handleButtonPress("Button 4")}
+          >
             <Text style={styles.textOpaci}>Điều khoản</Text>
-            <View style={styles.borderLine} />
+            <Image
+              style={styles.icon}
+              source={require("../../assets/img/icon/term.png")}
+            ></Image>
           </TouchableOpacity>
 
-
-          {user && !_.isEmpty(user)
-            ?
+          {user && !_.isEmpty(user) ? (
             <>
-              <TouchableOpacity onPress={toggleModal}>
+              <TouchableOpacity style={styles.opaci} onPress={toggleModal}>
                 <Text style={styles.textOpaci}>Thoát</Text>
-                <View style={styles.borderLine} />
+                <Image
+                  style={styles.icon}
+                  source={require("../../assets/img/icon/logout.png")}
+                ></Image>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={toggleDeleteAccount}>
+              <TouchableOpacity
+                style={styles.opaci}
+                onPress={toggleDeleteAccount}
+              >
                 <Text style={styles.textOpaci}>Xóa tài khoản</Text>
-                <View style={styles.borderLine} />
+                <Image
+                  style={styles.icon}
+                  source={require("../../assets/img/icon/userdelete.png")}
+                ></Image>
               </TouchableOpacity>
+
               <Modal isVisible={isModalVisible}>
                 <View
                   style={{
@@ -331,32 +366,35 @@ const Personal = ({ navigation, route }) => {
                 </View>
               </Modal>
             </>
-            :
-            <>
-            </>
-          }
-
+          ) : (
+            <></>
+          )}
         </View>
         <View style={{ flex: 2, alignItems: "center" }}></View>
-      </View >
-      :
-      <View>
       </View>
+      :<View></View>
     </>
-
   );
 };
 const styles = StyleSheet.create({
   textOpaci: {
     fontSize: 18,
     fontWeight: 600,
+    alignSelf: "center",
   },
-  borderLine: {
-    marginTop: 15,
-    borderBottomWidth: 1, // Độ rộng của border dưới
-    borderBottomColor: "black", // Màu sắc của border dưới
-    width: "320px", // Chiều rộng của đường dưới, có thể điều chỉnh theo nhu cầu
-    alignSelf: "center", // Canh chỉnh theo trung tâm
+  icon: {
+    width: 36,
+    height: 36,
+    alignSelf: "center",
+  },
+  opaci: {
+    margin: 5,
+    width: 320,
+    height: 50,
+    borderBottomWidth: 1,
+    borderBottomColor: "black",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
 
