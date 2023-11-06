@@ -8,6 +8,7 @@ import InformationUser from "./src/component/InformationUser";
 import UpdatePassword from "./src/component/UpdatePassword";
 import Productportfolio from "./src/component/Productportfolio";
 import DiscountDetail from "./src/component/DiscountDetail";
+import ProductDetails from "./src/component/ProductDetails";
 import { store } from "./src/redux/store";
 import { Provider, useSelector } from "react-redux";
 import _ from "lodash";
@@ -119,6 +120,30 @@ export default function App() {
                 // shadowOpacity: 0.8,
               },
               headerTitle: "Danh sách món",
+            }}
+          />
+          <Stack.Screen
+            name="ProductDetails"
+            component={ProductDetails}
+            options={{
+              headerTitleAlign: "center",
+              headerStyle: {
+                backgroundColor: "#FFB900",
+              },
+              headerTitleStyle: {
+                fontFamily: "Inter",
+                fontSize: 25,
+                fontStyle: "normal",
+                fontWeight: "700",
+                color: "#000",
+                // shadowOffset: {
+                //   width: 0,
+                //   height: 1,
+                // },
+                // shadowColor: "#ddd",
+                // shadowOpacity: 0.8,
+              },
+              headerTitle: "Chi tiết món ăn",
             }}
           />
           <Stack.Screen
