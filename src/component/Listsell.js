@@ -1,74 +1,79 @@
 import React from "react";
-import { Image, Text, View } from "react-native";
-import { useSelector } from "react-redux";
+import { Image, Text, TouchableHighlight, View } from "react-native";
+
 const Listsell = (props) => {
   const { item, navigation } = props;
-  // const productSelected = useSelector((state) => state.);
-  console.log(item);
+
+  const handleOnPress = (item) => {
+    navigation.navigate("descriptionproduct", { item: item });
+  };
+
   return (
-    <View
-      style={{
-        height: 220,
-        width: 160,
-        borderRadius: 10,
-        overflow: "hidden",
-        shadowColor: "#000000",
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-          height: 1,
-          width: 1,
-        },
-      }}
-    >
-      <View style={{ height: 20, backgroundColor: "#FFF" }}></View>
+    <TouchableHighlight onPress={() => handleOnPress(item)}>
       <View
         style={{
-          height: 130,
-          borderBottomWidth: 1,
-          borderBottomColor: "#FFB900",
+          height: 220,
+          width: 160,
+          borderRadius: 10,
+          overflow: "hidden",
+          shadowColor: "#000000",
+          shadowOpacity: 0.8,
+          shadowRadius: 2,
+          shadowOffset: {
+            height: 1,
+            width: 1,
+          },
         }}
       >
-        <Image
+        <View style={{ height: 20, backgroundColor: "#FFF" }}></View>
+        <View
           style={{
-            flex: 1,
-            height: undefined,
-            width: undefined,
-            resizeMode: "contain",
-          }}
-          source={item.img}
-        />
-      </View>
-      <View style={{ justifyContent: "space-between" }}>
-        <Text
-          style={{
-            marginLeft: 10,
-            marginTop: 5,
-            marginBottom: 5,
-            fontFamily: "Inter",
-            fontSize: 17,
-            fontWeight: "700",
-            fontStyle: "normal",
-            color: "#000",
+            height: 130,
+            borderBottomWidth: 1,
+            borderBottomColor: "#FFB900",
           }}
         >
-          {item.name}
-        </Text>
-        <Text
-          style={{
-            marginLeft: 10,
-            marginBottom: 15,
-            fontFamily: "Inter",
-            fontSize: 17,
-            fontWeight: "700",
-            fontStyle: "normal",
-            color: "#E81725",
-          }}
-        >
-          {item.price}
-        </Text>
+          <Image
+            style={{
+              flex: 1,
+              height: undefined,
+              width: undefined,
+              resizeMode: "contain",
+            }}
+            source={item.img}
+          />
+        </View>
+        <View style={{ justifyContent: "space-between" }}>
+          <Text
+            style={{
+              marginLeft: 10,
+              marginTop: 5,
+              marginBottom: 5,
+              fontFamily: "Inter",
+              fontSize: 17,
+              fontWeight: "700",
+              fontStyle: "normal",
+              color: "#000",
+            }}
+          >
+            {item.name}
+          </Text>
+          <Text
+            style={{
+              marginLeft: 10,
+              marginBottom: 15,
+              fontFamily: "Inter",
+              fontSize: 17,
+              fontWeight: "700",
+              fontStyle: "normal",
+              color: "#E81725",
+            }}
+          >
+            {item.price}
+          </Text>
+        </View>
       </View>
-    </View>
+    </TouchableHighlight>
   );
 };
 

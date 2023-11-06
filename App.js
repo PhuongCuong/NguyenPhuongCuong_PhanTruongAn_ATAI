@@ -8,10 +8,12 @@ import InformationUser from "./src/component/InformationUser";
 import UpdatePassword from "./src/component/UpdatePassword";
 import Productportfolio from "./src/component/Productportfolio";
 import DiscountDetail from "./src/component/DiscountDetail";
-import ProductDetails from "./src/component/ProductDetails";
 import { store } from "./src/redux/store";
 import { Provider, useSelector } from "react-redux";
 import _ from "lodash";
+import Descriptionproduct from "./src/component/Descriptionproduct";
+import Icon from "react-native-vector-icons/Entypo";
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -112,38 +114,8 @@ export default function App() {
                 fontStyle: "normal",
                 fontWeight: "700",
                 color: "#000",
-                // shadowOffset: {
-                //   width: 0,
-                //   height: 1,
-                // },
-                // shadowColor: "#ddd",
-                // shadowOpacity: 0.8,
               },
               headerTitle: "Danh sách món",
-            }}
-          />
-          <Stack.Screen
-            name="ProductDetails"
-            component={ProductDetails}
-            options={{
-              headerTitleAlign: "center",
-              headerStyle: {
-                backgroundColor: "#FFB900",
-              },
-              headerTitleStyle: {
-                fontFamily: "Inter",
-                fontSize: 25,
-                fontStyle: "normal",
-                fontWeight: "700",
-                color: "#000",
-                // shadowOffset: {
-                //   width: 0,
-                //   height: 1,
-                // },
-                // shadowColor: "#ddd",
-                // shadowOpacity: 0.8,
-              },
-              headerTitle: "Chi tiết món ăn",
             }}
           />
           <Stack.Screen
@@ -162,6 +134,26 @@ export default function App() {
                 fontWeight: "700",
               },
               title: "Thông tin giảm giá",
+            }}
+          />
+          <Stack.Screen
+            name="descriptionproduct"
+            component={Descriptionproduct}
+            options={{
+              headerTitleAlign: "center",
+              headerTitle: "Chi tiết sản phẩm",
+              headerStyle: {
+                fontFamily: "Inter",
+                fontSize: 18,
+                fontStyle: "normal",
+                fontWeight: "700",
+              },
+              headerRight: () => {
+                return <Icon name="shopping-cart" size={24} />;
+              },
+              headerRightContainerStyle: {
+                marginRight: 10,
+              },
             }}
           />
         </Stack.Navigator>
