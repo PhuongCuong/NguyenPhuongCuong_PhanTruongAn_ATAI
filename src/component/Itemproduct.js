@@ -26,7 +26,7 @@ const Itemproduct = (props) => {
     } else if (item.id === 4) {
       listproduct = [...listproduct6];
     }
-    await navigation.navigate("productportfolio", { listproduct: listproduct });
+    await navigation.navigate("productportfolio", { listproduct: listproduct, navigation: navigation });
   };
 
   return (

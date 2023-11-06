@@ -44,7 +44,7 @@ const Productportfolio = (props) => {
         >
           {listproduct &&
             listproduct.map((item, index) => {
-              return <Listsell key={index} item={item} />;
+              return <Listsell key={index} item={item} navigation={navigation} />;
             })}
         </View>
       </View>
