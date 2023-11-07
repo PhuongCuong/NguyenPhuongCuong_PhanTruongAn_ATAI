@@ -195,8 +195,8 @@ const Home = (props) => {
               justifyContent: "center",
             }}
           >
-            {listsell.map((item, index) => {
-              return <Listsell key={index} item={item} />;
+            {listproductsell.map((item, index) => {
+              return <Listsell key={index} item={item} navigation={navigation} />;
             })}
           </View>
         </View>

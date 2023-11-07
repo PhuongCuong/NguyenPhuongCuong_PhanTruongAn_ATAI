@@ -19,39 +19,48 @@ import Modal from "react-native-modal";
 import _ from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { uploaduser } from "../redux/userSlice";
+import { keyboardType } from "deprecated-react-native-prop-types/DeprecatedTextInputPropTypes";
 const Descriptionproduct = (props) => {
   var route = useRoute();
   const dispatch = useDispatch();
   const { navigation } = props;
   const [quantity, setQuantity] = useState(0);
-  const [inputFinished, setInputFinished] = useState(false);
   var itemSelected = route.params.item;
   const userReducer = useSelector((state) => state.uploaduserinfo);
   var { user } = userReducer;
-  // const addToCart = () => {
-  //   var product = {
-  //     ...itemSelected,
-  //     quantity: quantity,
-  //   };
-  //   newUser.cart.push(product);
-  //   fetch(`https://65434e0301b5e279de202812.mockapi.io/User/${user.id}`, {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(newUser),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((updateData) => {
-  //       setData(updateData);
-  //     });
 
-  //   navigation.navigate("cart", {
-  //     newData: data,
-  //   });
-  //   console.log(data);
-  // };
-  // console.log(Object.isExtensible(user));
+  const [userInfo,setuserInfo] = useState({})
+  const [cart,setcart] = useState(user && !_.isEmpty(user) && user.cart && user.cart.length >0 ? [...user.cart] : []);
+
+  const handleAddCart = () =>{
+    if(user && !_.isEmpty(user)){
+      let productdata = {...itemSelected};
+      productdata.quantity = quantity;
+      let dataitem = userInfo && !_.isEmpty(userInfo)
+          && userInfo.cart.filter((item) => item.id === productdata.id)
+          console.log('check data item',dataitem)
+      setcart([...cart,productdata])
+    }else{
+      navigation.navigate("login")
+    }
+  }
+
+
+  useEffect(() =>{
+    setuserInfo({
+      id:user.id,
+      password:user.password,
+      fullname:user.fullname,
+      email:user.email,
+      discount:user.discount,
+      cart:cart ? cart : []
+    })
+    
+  },[cart])
+
+  console.log("check userinfor",userInfo)
+
+
 
   return (
     <View
@@ -135,18 +144,21 @@ const Descriptionproduct = (props) => {
               setQuantity(number);
             }}
             placeholder="Nhập số lượng"
+            keyboardType="numeric"
             style={{
               alignSelf: "center",
               color: "gray",
               textAlign: "center",
               fontSize: 15,
               fontWeight: 400,
-              outline: "none",
-            }}
-          ></TextInput>
+              outlineStyle: "none",
+            }
+          }
+
+          />
         </View>
         <TouchableOpacity
-          // onPress={addToCart}
+          onPress={() =>handleAddCart()}
           style={{
             backgroundColor: "#e68534",
             alignSelf: "center",
