@@ -11,12 +11,48 @@ import {
   TouchableOpacity,
   Alert,
   Button,
+  ScrollView,
 } from "react-native";
-import Icon from "react-native-vector-icons/Entypo";
-import Modal from "react-native-modal";
+
+import { useSelector } from "react-redux";
+import Itemcart from "./Itemcart";
+
+
 const Cart = () => {
+
+  const cartReducer = useSelector((state) => state.cartinfo);
+  const { cart } = cartReducer;
+
+  const [totalprice, settotalprice] = useState(0)
+
+  useEffect(() => {
+    if (cart?.length > 0) {
+      let total = 0;
+      for (let i = 0; i < cart.length; i++) {
+        let priceitem = parseInt(cart[i].price.replace(/\D/g, ''), 10);
+        let pricequantity = priceitem * cart[i].quantity
+        total += pricequantity;
+      }
+      settotalprice(total);
+    }
+  }, [cart])
+
+
   return (
     <React.Fragment>
+      <View style={{ height: 430, backgroundColor: cart?.length > 0 ? '#FFB900' : "" }}>
+        <ScrollView>
+          {
+            cart && cart.length > 0 &&
+            cart.map((item, index) => {
+              return (
+                <Itemcart key={index} item={item} />
+              )
+            })
+          }
+        </ScrollView>
+
+      </View>
       <View style={styles.footer}>
         <Text
           style={{
@@ -40,7 +76,16 @@ const Cart = () => {
             justifyContent: "center",
           }}
         >
-          0 vnđ
+          {cart?.length > 0
+            ?
+            <>
+              {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalprice)}
+            </>
+            :
+            <>
+              0 vnđ
+            </>
+          }
         </Text>
         <TouchableOpacity style={styles.btnThanhToan}>
           <Text
@@ -71,6 +116,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2, height: 2 },
     shadowRadius: 3,
     elevation: 5,
+    position: "absolute"
   },
   btnThanhToan: {
     width: 300,

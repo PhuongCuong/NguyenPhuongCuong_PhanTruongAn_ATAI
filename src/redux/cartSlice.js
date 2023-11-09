@@ -1,20 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    user: {},
+    cart: []
 }
 
 export const counterSlice = createSlice({
-    name: "uploaduserinfo",
+    name: "cartinfo",
     initialState,
     reducers: {
-        uploaduser: (state, action) => {
-            state.user = action.payload.user
+        uploadcart: (state, action) => {
+            state.cart = action.payload
         },
 
     }
 })
 
-export const { uploaduser } = counterSlice.actions;
+export const { uploadcart } = counterSlice.actions;
 
 export default counterSlice.reducer;

@@ -13,8 +13,38 @@ import { Provider, useSelector } from "react-redux";
 import _ from "lodash";
 import Descriptionproduct from "./src/component/Descriptionproduct";
 import Icon from "react-native-vector-icons/Entypo";
+import { Pressable, Text, View } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 const Stack = createStackNavigator();
+
+const btncart = () => {
+
+  const cartReducer = useSelector((state) => state.cartinfo);
+  const { cart } = cartReducer;
+
+  const navigation = useNavigation();
+  return (
+    <Pressable style={{ position: "relative" }} onPress={() => navigation.navigate("cart")}>
+      <Icon name="shopping-cart" size={30} />
+      {cart?.length > 0
+        ?
+        <View style={{
+          width: 25, height: 25, borderRadius: "50%", backgroundColor: "red"
+          , justifyContent: "center", alignItems: "center",
+          position: "absolute", top: -15, right: -9
+        }}>
+          <Text style={{
+            color: "white", fontFamily: "Inter", fontSize: 17, fontWeight: "700"
+          }}>{cart.length}</Text>
+        </View>
+        :
+        <></>
+      }
+
+    </Pressable >
+  )
+}
 
 export default function App() {
   return (
@@ -149,9 +179,7 @@ export default function App() {
                 fontSize: 18,
                 fontWeight: "700",
               },
-              headerRight: () => {
-                return <Icon name="shopping-cart" size={24} />;
-              },
+              headerRight: () => btncart(),
               headerRightContainerStyle: {
                 marginRight: 10,
               },

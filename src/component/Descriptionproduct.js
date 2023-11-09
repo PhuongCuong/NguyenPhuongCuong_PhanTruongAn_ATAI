@@ -4,22 +4,20 @@ import { useState, useEffect } from "react";
 import {
   StyleSheet,
   Image,
-  Pressable,
   Text,
   TextInput,
   View,
   TouchableOpacity,
-  Alert,
-  Button,
-  Linking,
   ScrollView,
 } from "react-native";
-import Icon from "react-native-vector-icons/Entypo";
-import Modal from "react-native-modal";
+
 import _ from "lodash";
 import { useDispatch, useSelector } from "react-redux";
-import { uploaduser } from "../redux/userSlice";
-import { keyboardType } from "deprecated-react-native-prop-types/DeprecatedTextInputPropTypes";
+import { uploadcart } from '../redux/cartSlice';
+
+
+
+
 const Descriptionproduct = (props) => {
   var route = useRoute();
   const dispatch = useDispatch();
@@ -29,37 +27,48 @@ const Descriptionproduct = (props) => {
   const userReducer = useSelector((state) => state.uploaduserinfo);
   var { user } = userReducer;
 
-  const [userInfo,setuserInfo] = useState({})
-  const [cart,setcart] = useState(user && !_.isEmpty(user) && user.cart && user.cart.length >0 ? [...user.cart] : []);
+  const cartReducer = useSelector((state) => state.cartinfo);
+  const { cart } = cartReducer;
 
-  const handleAddCart = () =>{
-    if(user && !_.isEmpty(user)){
-      let productdata = {...itemSelected};
-      productdata.quantity = quantity;
-      let dataitem = userInfo && !_.isEmpty(userInfo)
-          && userInfo.cart.filter((item) => item.id === productdata.id)
-          console.log('check data item',dataitem)
-      setcart([...cart,productdata])
-    }else{
+
+  const handleAddCart = () => {
+    if (user && !_.isEmpty(user)) {
+      let objIndex = cart.filter((obj => obj.id === itemSelected.id && obj.portfolio === itemSelected.portfolio));
+      if (objIndex && objIndex.length > 0) {
+        let copycart = cart.map(obj => obj.id === itemSelected.id && obj.portfolio === itemSelected.portfolio
+          ? { ...obj, quantity: obj.quantity + quantity } : obj);
+        dispatch(uploadcart(copycart))
+      }
+      else {
+        let productdata = { ...itemSelected };
+        productdata.quantity = quantity;
+        dispatch(uploadcart([...cart, productdata]))
+      }
+    } else {
       navigation.navigate("login")
     }
   }
 
 
-  useEffect(() =>{
-    setuserInfo({
-      id:user.id,
-      password:user.password,
-      fullname:user.fullname,
-      email:user.email,
-      discount:user.discount,
-      cart:cart ? cart : []
-    })
-    
-  },[cart])
-
-  console.log("check userinfor",userInfo)
-
+  useEffect(() => {
+    if (user && !_.isEmpty(user)) {
+      fetch(`https://65434e0301b5e279de202812.mockapi.io/User/${user?.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: user.email,
+          password: user.password,
+          fullname: user.fullname,
+          cart: cart?.length > 0 ? cart : [],
+          phone: user.phone,
+          discount: user.discount,
+          id: user.id
+        }),
+      })
+    }
+  }, [cart])
 
 
   return (
@@ -153,12 +162,12 @@ const Descriptionproduct = (props) => {
               fontWeight: 400,
               outlineStyle: "none",
             }
-          }
+            }
 
           />
         </View>
         <TouchableOpacity
-          onPress={() =>handleAddCart()}
+          onPress={() => handleAddCart()}
           style={{
             backgroundColor: "#e68534",
             alignSelf: "center",

@@ -4,8 +4,15 @@ import Icon from "react-native-vector-icons/Entypo";
 import { useRoute } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { uploaduser } from "../redux/userSlice";
+import { uploadcart } from "../redux/cartSlice";
 
 const Login = ({ navigation }) => {
+
+
+  const cartReducer = useSelector((state) => state.cartinfo);
+  const { cart } = cartReducer;
+
+
   const userReducer = useSelector((state) => state.uploaduserinfo);
   const dispatch = useDispatch();
 
@@ -45,6 +52,7 @@ const Login = ({ navigation }) => {
     );
     if (user) {
       await dispatch(uploaduser({ user }));
+      await dispatch(uploadcart(user.cart))
       await navigation.navigate("home", { userLogin: user });
       await navigation.navigate("Home", { userLogin: user });
     } else {
