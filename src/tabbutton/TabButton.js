@@ -42,7 +42,7 @@ const Search = () => {
         }}
         placeholder="Bạn cần tìm kiếm gì hôm nay ?"
       />
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={{
           width: 35,
           height: 35,
@@ -54,7 +54,7 @@ const Search = () => {
           source={require("../../assets/img/icon/cart.png")}
           style={{ width: 34, height: 34 }}
         ></Image>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };

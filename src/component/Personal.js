@@ -26,6 +26,10 @@ const Personal = ({ navigation, route }) => {
   const [isDeleteVisible, setDeleteVisible] = useState(false);
   var [listData, setListData] = useState([]);
   const [deleteAccount, setDeleteAccount] = useState("");
+  const [value, setValue] = useState("");
+  const handleMouseLeave = () => {
+    setValue("");
+  };
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -35,7 +39,6 @@ const Personal = ({ navigation, route }) => {
   useEffect(() => {
     user = route.params.updatedUser;
   }, [route.params.updatedUser]);
-  console.log(user);
   const handleLogOutAndUpdateData = () => {
     setModalVisible(false);
     navigation.navigate("login", { dataUpdate: listData });
@@ -108,8 +111,19 @@ const Personal = ({ navigation, route }) => {
                 onPress={() =>
                   navigation.navigate("Thông tin tài khoản", { user: user })
                 }
+                onMouseEnter={() => setValue("1")}
+                onMouseLeave={handleMouseLeave}
               >
-                <Text style={styles.textOpaci}>Thông tin tài khoản</Text>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    fontWeight: 600,
+                    alignSelf: "center",
+                    color: value === "1" ? "#ffb900" : "black",
+                  }}
+                >
+                  Thông tin tài khoản
+                </Text>
                 <Image
                   style={styles.icon}
                   source={require("../../assets/img/icon/info.png")}
@@ -121,8 +135,19 @@ const Personal = ({ navigation, route }) => {
                 onPress={() =>
                   navigation.navigate("Đổi mật khẩu", { user: user })
                 }
+                onMouseEnter={() => setValue("2")}
+                onMouseLeave={handleMouseLeave}
               >
-                <Text style={styles.textOpaci}>Đổi mật khẩu</Text>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    fontWeight: 600,
+                    alignSelf: "center",
+                    color: value === "2" ? "#ffb900" : "black",
+                  }}
+                >
+                  Đổi mật khẩu
+                </Text>
                 <Image
                   style={styles.icon}
                   source={require("../../assets/img/icon/locked.png")}
@@ -134,8 +159,19 @@ const Personal = ({ navigation, route }) => {
               <TouchableOpacity
                 style={styles.opaci}
                 onPress={() => navigation.navigate("login")}
+                onMouseEnter={() => setValue("3")}
+                onMouseLeave={handleMouseLeave}
               >
-                <Text style={styles.textOpaci}>Đăng Nhập</Text>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    fontWeight: 600,
+                    alignSelf: "center",
+                    color: value === "3" ? "#ffb900" : "black",
+                  }}
+                >
+                  Đăng Nhập
+                </Text>
                 <Image
                   style={styles.icon}
                   source={require("../../assets/img/icon/login.png")}
@@ -149,8 +185,19 @@ const Personal = ({ navigation, route }) => {
             onPress={() => {
               Linking.openURL("https://atai.dev24h.net/gioi-thieu.html");
             }}
+            onMouseEnter={() => setValue("4")}
+            onMouseLeave={handleMouseLeave}
           >
-            <Text style={styles.textOpaci}>Giới thiệu về ATAI</Text>
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: 600,
+                alignSelf: "center",
+                color: value === "4" ? "#ffb900" : "black",
+              }}
+            >
+              Giới thiệu về ATAI
+            </Text>
             <Image
               style={styles.icon}
               source={require("../../assets/img/icon/aboutus.png")}
@@ -159,9 +206,20 @@ const Personal = ({ navigation, route }) => {
 
           <TouchableOpacity
             style={styles.opaci}
-            onPress={() => handleButtonPress("Button 4")}
+            onPress={() => navigation.navigate("Term")}
+            onMouseEnter={() => setValue("5")}
+            onMouseLeave={handleMouseLeave}
           >
-            <Text style={styles.textOpaci}>Điều khoản</Text>
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: 600,
+                alignSelf: "center",
+                color: value === "5" ? "#ffb900" : "black",
+              }}
+            >
+              Điều khoản
+            </Text>
             <Image
               style={styles.icon}
               source={require("../../assets/img/icon/term.png")}
@@ -170,8 +228,22 @@ const Personal = ({ navigation, route }) => {
 
           {user && !_.isEmpty(user) ? (
             <>
-              <TouchableOpacity style={styles.opaci} onPress={toggleModal}>
-                <Text style={styles.textOpaci}>Thoát</Text>
+              <TouchableOpacity
+                style={styles.opaci}
+                onPress={toggleModal}
+                onMouseEnter={() => setValue("6")}
+                onMouseLeave={handleMouseLeave}
+              >
+                <Text
+                  style={{
+                    fontSize: 18,
+                    fontWeight: 600,
+                    alignSelf: "center",
+                    color: value === "6" ? "#ffb900" : "black",
+                  }}
+                >
+                  Thoát
+                </Text>
                 <Image
                   style={styles.icon}
                   source={require("../../assets/img/icon/logout.png")}
@@ -181,8 +253,19 @@ const Personal = ({ navigation, route }) => {
               <TouchableOpacity
                 style={styles.opaci}
                 onPress={toggleDeleteAccount}
+                onMouseEnter={() => setValue("7")}
+                onMouseLeave={handleMouseLeave}
               >
-                <Text style={styles.textOpaci}>Xóa tài khoản</Text>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    fontWeight: 600,
+                    alignSelf: "center",
+                    color: value === "7" ? "#ffb900" : "black",
+                  }}
+                >
+                  Xóa tài khoản
+                </Text>
                 <Image
                   style={styles.icon}
                   source={require("../../assets/img/icon/userdelete.png")}
