@@ -33,13 +33,16 @@ const Itemcart = (props) => {
     }
 
     const handleDelete = (items) => {
-        let updatecart = cart.filter((item) => item.id === items.id && item.portfolio === items.portfolio)
-        console.log('check dataupdate', updatecart)
+        let updatecart = cart.filter((item) => !(item.id === items.id && item.portfolio === items.portfolio))
+        if (updatecart.length === 0) {
+            updatecart = [];
+        }
         dispath(uploadcart(updatecart))
     }
 
     useEffect(() => {
         if (user && !_.isEmpty(user)) {
+            const cartData = cart?.length > 0 ? cart : [];
             fetch(`https://65434e0301b5e279de202812.mockapi.io/User/${user?.id}`, {
                 method: "PUT",
                 headers: {
@@ -49,7 +52,7 @@ const Itemcart = (props) => {
                     email: user.email,
                     password: user.password,
                     fullname: user.fullname,
-                    cart: cart?.length > 0 ? cart : [],
+                    cart: cartData,
                     phone: user.phone,
                     discount: user.discount,
                     id: user.id
