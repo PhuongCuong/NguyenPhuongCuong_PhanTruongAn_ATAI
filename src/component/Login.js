@@ -5,56 +5,35 @@ import { useRoute } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { uploaduser } from "../redux/userSlice";
 import { uploadcart } from "../redux/cartSlice";
+import { startCase } from "lodash";
+import { getData } from "../redux/dataSlice";
 
 const Login = ({ navigation }) => {
-
-
   const cartReducer = useSelector((state) => state.cartinfo);
   const { cart } = cartReducer;
-
 
   const userReducer = useSelector((state) => state.uploaduserinfo);
   const dispatch = useDispatch();
 
-  var [data, setData] = useState([]);
+  const data = useSelector((state) => state.data.data);
+  console.log(data);
   const [showpass, setshowpass] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   var route = useRoute();
   useEffect(() => {
-    fetch(`https://65434e0301b5e279de202812.mockapi.io/User`)
-      .then((response) => response.json())
-      .then((json) => {
-        data = json;
-        setData(json);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (route.params?.newData) {
-      setData([...data, route.params.newData]);
-    }
-  }, [route.params?.newData]);
-
-  useEffect(() => {
-    if (route.params?.dataUpdate) {
-      fetch(`https://65434e0301b5e279de202812.mockapi.io/User`)
-        .then((response) => response.json())
-        .then((json) => {
-          route.params.dataUpdate = json;
-          setData(json);
-        });
-    }
-  }, [route.params]);
-  const handleLogin = async () => {
+    dispatch(getData());
+  }, [dispatch]);
+  console.log(data);
+  const handleLogin = () => {
     const user = data.find(
       (user) => user.email === email && user.password === password
     );
     if (user) {
-      await dispatch(uploaduser({ user }));
-      await dispatch(uploadcart(user.cart))
-      await navigation.navigate("home", { userLogin: user });
-      await navigation.navigate("Home", { userLogin: user });
+      dispatch(uploaduser({ user }));
+      dispatch(uploadcart(user.cart));
+      navigation.navigate("home", { userLogin: user });
+      navigation.navigate("Home", { userLogin: user });
     } else {
       alert("Email hoặc password sai! ");
     }

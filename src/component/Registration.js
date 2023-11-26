@@ -3,9 +3,13 @@ import React from "react";
 import { CheckBox } from "react-native-elements";
 import { Image, Pressable, Text, TextInput, View } from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
+import { useDispatch, useSelector } from "react-redux";
+import { getData } from "../redux/dataSlice";
 const Registration = ({ navigation }) => {
   const [isChecked, setIsChecked] = useState(false);
-  var [data, setData] = useState([]);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.data.data);
+  // var [data, setData] = useState([]);
   const [showpass, setshowpass] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,13 +21,8 @@ const Registration = ({ navigation }) => {
     setIsChecked(!isChecked);
   };
   useEffect(() => {
-    fetch(`https://65434e0301b5e279de202812.mockapi.io/User`)
-      .then((response) => response.json())
-      .then((json) => {
-        data = json;
-        setData(json);
-      });
-  }, []);
+    dispatch(getData());
+  }, [dispatch]);
   const handleInsertUser = () => {
     if (email === "" || password === "" || fullName === "" || phone === "") {
       alert("Vui lòng nhập đầy đủ thông tin !");
@@ -54,9 +53,8 @@ const Registration = ({ navigation }) => {
         })
           .then((response) => response.json())
           .then((updatedUser) => {
-            setData([...data, updatedUser]);
             alert("Đăng ký thành công!");
-            navigation.navigate("login", { newData: newUser });
+            navigation.navigate("login", dispatch(getData()));
           });
       } else {
         alert("Vui lòng đồng ý với các điều khoản sử dụng!");

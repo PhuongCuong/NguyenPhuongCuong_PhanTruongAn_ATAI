@@ -5,7 +5,7 @@ const initialState = {
 };
 
 export const cartDelete = createAsyncThunk(
-  "cartinfo/constDelete",
+  "cartinfo/cartDelete",
   async (item) => {
     const response = await fetch(
       `https://65434e0301b5e279de202812.mockapi.io/User/${item.id}`,
