@@ -49,12 +49,7 @@ const Search = () => {
           left: 82,
           alignItems: "center",
         }}
-      >
-        <Image
-          source={require("../../assets/img/icon/cart.png")}
-          style={{ width: 34, height: 34 }}
-        ></Image>
-      </TouchableOpacity>
+      ></TouchableOpacity>
     </View>
   );
 };

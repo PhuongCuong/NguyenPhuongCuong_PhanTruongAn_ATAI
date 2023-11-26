@@ -8,43 +8,59 @@ import InformationUser from "./src/component/InformationUser";
 import UpdatePassword from "./src/component/UpdatePassword";
 import Productportfolio from "./src/component/Productportfolio";
 import DiscountDetail from "./src/component/DiscountDetail";
+import Term from "./src/component/Term";
 import { store } from "./src/redux/store";
 import { Provider, useSelector } from "react-redux";
 import _ from "lodash";
 import Descriptionproduct from "./src/component/Descriptionproduct";
 import Icon from "react-native-vector-icons/Entypo";
 import { Pressable, Text, View } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
 
 const btncart = () => {
-
   const cartReducer = useSelector((state) => state.cartinfo);
   const { cart } = cartReducer;
 
   const navigation = useNavigation();
   return (
-    <Pressable style={{ position: "relative" }} onPress={() => navigation.navigate("cart")}>
+    <Pressable
+      style={{ position: "relative" }}
+      onPress={() => navigation.navigate("cart")}
+    >
       <Icon name="shopping-cart" size={30} />
-      {cart?.length > 0
-        ?
-        <View style={{
-          width: 25, height: 25, borderRadius: "50%", backgroundColor: "red"
-          , justifyContent: "center", alignItems: "center",
-          position: "absolute", top: -15, right: -9
-        }}>
-          <Text style={{
-            color: "white", fontFamily: "Inter", fontSize: 17, fontWeight: "700"
-          }}>{cart.length}</Text>
+      {cart?.length > 0 ? (
+        <View
+          style={{
+            width: 25,
+            height: 25,
+            borderRadius: "50%",
+            backgroundColor: "red",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "absolute",
+            top: -15,
+            right: -9,
+          }}
+        >
+          <Text
+            style={{
+              color: "white",
+              fontFamily: "Inter",
+              fontSize: 17,
+              fontWeight: "700",
+            }}
+          >
+            {cart.length}
+          </Text>
         </View>
-        :
+      ) : (
         <></>
-      }
-
-    </Pressable >
-  )
-}
+      )}
+    </Pressable>
+  );
+};
 
 export default function App() {
   return (
@@ -183,6 +199,24 @@ export default function App() {
               headerRightContainerStyle: {
                 marginRight: 10,
               },
+            }}
+          />
+          <Stack.Screen
+            name="Term"
+            component={Term}
+            options={{
+              headerStyle: {
+                backgroundColor: "#FFB900",
+              },
+              headerTitleAlign: "center",
+              headerTintColor: "#000",
+              headerTitleStyle: {
+                fontFamily: "Inter",
+                fontSize: 25,
+                fontStyle: "normal",
+                fontWeight: "700",
+              },
+              title: "Điều khoản dịch vụ",
             }}
           />
         </Stack.Navigator>
