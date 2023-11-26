@@ -14,7 +14,7 @@ export const cartDelete = createAsyncThunk(
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...item, cart: [...item.cart] }),
+        body: JSON.stringify({ ...item, cart: item.cart }),
       }
     );
     return await response.json();
